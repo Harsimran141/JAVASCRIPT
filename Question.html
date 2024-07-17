@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="container" class="bg-cyan-700 h-screen w-full  flex  justify-center">
+        <div id="submit-container" class="flex flex-col space-y-5 bg-indigo-300 w-96 h-48 px-4 py-4">
+            <input id="inputid" type="text" class="w-85 py-2 rounded-md">
+
+            <button id="submit-botton" class="bg-green-700 text-2xl text-white rounded-md">
+                Submit
+            </button>
+            <button id="board-button" class="bg-blue-800 text-2xl text-white rounded-md">
+                Score Board
+            </button>
+        </div>
+        <div id="subcontainer" class="w-96 h-48 bg-blue-300 space-y-4 hidden ">
+
+        </div>
+
+        <div id="scoreContainer"
+            class="hidden text-center w-80 h-72 border border-dashed border-gray-400 bg-slate-300 space-y-10">
+            <h1 id="heading"></h1>
+            <p id="emoji"></p>
+            <button id="Startbutton" class="bg-blue-500 px-7 py-2 text-center" onclick="startagain()">Start
+                Again</button>
+        </div>
+
+    </div>
+    <script>
+        const MultiOption = [
+            {
+                Question: "What is capital of france",
+                Option: ["Berlin", "Madrin", "Paris", "Rome"],
+                Answer: "Paris",
+
+            },
+            {
+                Question: "Which planet is known as the Red Plannet",
+                Option: ["Earth", "Mars", "Jupiter", "Saturn",],
+                Answer: "Mars",
+            },
+            {
+                Question: "What is the Largest ocean on Earth",
+                Option: ["Atlantic", "Indian", "Arctic", "Pacific"],
+                Answer: "Pacific",
+            },
+            {
+                Question: "Which country is famous for sushi",
+                Option: ["China", "japan", "Korea", "Thailand"],
+                Answer: "Japan",
+            },
+            {
+                Question: "What is the boiling point of Water",
+                Option: ["90C", "100C", "110C", "120C"],
+                Answer: "100C",
+            },
+        ];
+
+        let Questionindex = 0;
+        let score = 0
+
+        const container = document.getElementById("container");
+        const subContainer = document.getElementById("subcontainer");
+        const scoreContainer = document.getElementById("scoreContainer");
+        const emoji = document.getElementById("emoji");
+        const StartButton = document.getElementById("StartButton");
+        const heading = document.getElementById("heading");
+        const submit = document.getElementById("submit-botton");
+        const scoreBoard = document.getElementById("scoreBoard");
+        const submitconatiner = document.getElementById("submit-container");
+        const inputid1 = document.getElementById("inputid");
+
+        submit.addEventListener("click", submitForm)
+
+        function submitForm() {
+            subContainer.classList.remove("hidden")
+            submitconatiner.classList.add("hidden")
+            let username = inputid1.value
+
+            localStorage.setItem("name", username)
+
+        }
+
+
+        function Displayquestion(index) {
+            let currentQuestion = MultiOption[index]
+
+            subContainer.innerHTML = ""
+            if (index >= MultiOption.length) {
+                subContainer.classList.add("hidden")
+                scoreContainer.classList.remove("hidden")
+                displayscore();
+                return
+            }
+            const heading = document.createElement("h1")
+            heading.classList.add("head")
+            heading.innerText = currentQuestion.Question
+            subContainer.appendChild(heading)
+            const divcontainer = document.createElement("div")
+
+            currentQuestion.Option.forEach(item => {
+                const button = document.createElement("Button")
+                //  console.log(button); 
+                button.classList.add("list")
+                button.style.display = "flex"
+                button.innerText = item
+                divcontainer.appendChild(button)
+
+            });
+            subContainer.appendChild(heading)
+            subContainer.appendChild(divcontainer)
+
+
+
+            const listItem = document.querySelectorAll(".list")
+            //  console.log("listitem",listItem)
+            listItem.forEach((element) => {
+                element.addEventListener("click", function () {
+
+                    //  console.log(element);
+                    if (element.innerText == currentQuestion.Answer) {
+
+                        score++
+                        // Questionindex++
+                        localStorage.setItem("score", score)
+                        container.classList.remove("bg-cyan-700")
+                        container.classList.add("bg-green-900")
+                        container.classList.remove("bg-red-700")
+
+                    }
+
+                    else {
+                        container.classList.remove("bg-cyan-700")
+                        container.classList.add("bg-red-900")
+                        container.classList.remove("bg-green-900")
+
+                    }
+
+                    Displayquestion(index + 1)
+                })
+            })
+
+        }
+        function displayscore() {
+            heading.innerText = `Your Score is = ${score} / ${MultiOption.length}`
+            emoji.innerText = score > 3 ? "🥳" : "😒"
+
+        }
+        Displayquestion(Questionindex)
+
+        function startagain() {
+            subContainer.classList.remove("hidden")
+            scoreContainer.classList.add("hidden")
+            score = 0
+            localStorage.setItem("score",0)
+            Displayquestion(0)
+
+
+        }
+
+        // console.log(MultiOption[2].Question);
+
+
+    </script>
+</body>
+
+</html>
