@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+    <style>
+        .main {
+            margin: auto;
+            border-radius: 10px;
+            width: 50%;
+            height: 50vh;
+            display: flex;
+            /* justify-content: center; */
+            /* align-items: center; */
+            background-color: bisque;
+            position: relative;
+        }
+
+        .img {
+            height: 940px; */
+
+        }
+
+        .arrow {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            font-size: 4rem;
+            color: rgb(35, 18, 1);
+            /* background-color: brown; */
+            top: 160px;
+            gap: 900px;
+            
+        }
+
+        /* .name2 {
+
+            text-align: center;
+            top: 850px;
+            color: brown;
+
+        } */
+
+        .dot {
+            height: 25px;
+            width: 50px;
+            opacity: 0.4;
+            background-color: rgb(233, 17, 6);
+            /* position: relative;
+            margin-right: 520px; */
+        }
+         #newdot{ 
+            position: absolute;
+            transform: translate(369px, -131px);
+        }
+        .list{ */
+            display: flex;
+            flex-direction: row;
+             gap: 10px;
+      
+           
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <img src="images/white.jpg" alt="" width="1450px" height="640px" id="img">
+        <h1 class="name2" id="name"></h1>
+        <div class="arrow">
+
+
+            
+            <p><i class="fa-solid fa-caret-right fa-beat" id="Next"></i></p>
+            
+                <p><i class="fa-solid fa-caret-left fa-beat" id="Prev"></i></p>
+        </div>
+            <div id="Newdot">
+                <div class="list"></div>
+            </div>
+        </div>
+
+    </div>
+        <script src="slide.js"></script>
+</body>
+
+</html>

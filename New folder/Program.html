@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+// let Array1 = [9,5,9,4,8,6,]
+
+// let minimum = Array1[0]
+// for(let element of Array1){
+// if(element<minimum){
+//     minimum=element
+// }
+// }
+// console.log(minimum);
+
+
+// let Array1 = [6,7,3,9,5,44,]
+// let maximum = Array1[0]
+// for(let element of Array1){
+//     if(element>maximum){
+//      maximum=element
+//     }
+// }
+// console.log(maximum);
+
+
+let student = {
+  "personalinfo": {
+    "id": {
+      "id_Number": "123456",
+      "Full_Name": "Vikas Kumar",
+    },
+    "Demographics": {
+      "Age": "24",
+      "Gender": "Male",
+      "Nationality": "Indian",
+    },
+  },
+  "Academic_Information": {
+    "Enrollment_Status": {
+      "Part_Time": "4 Hour",
+      "Full_Time": "8 Hour",
+    },
+    "Current_courses": [
+      {
+      "Course 1": "BCA",
+      },
+      {
+      "Course 2": "MCA",
+      },
+      {
+      "Course N": "",
+      }
+    
+  ],
+    "GPA": {
+
+    },
+  },
+  "Extracurricular_activity": {
+    "Clubs": {
+      "Club 1": "",
+      "Club 2": "",
+    },
+    "Sports": {
+      "Sport 1": "",
+      "Sport 2": "",
+    },
+    "Volunteering": {
+      "Event 1": "",
+      "Event 2": "",
+    },
+  },
+  "Contact_Information": {
+    "Phone_Number": "123456789",
+    "Email":"Student@yahoo.com",
+    "Address": {
+      "Street": "",
+      "City": "Amritsar",
+      "Zip_Code": "143001",
+    },
+  },
+
+};
+
+for(let element in student){
+    console.log(student[element]);
+}
+
+
+    </script>
+</body>
+</html>
+
+

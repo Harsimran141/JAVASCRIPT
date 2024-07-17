@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one {
+            border-radius: 10px;
+            border: 2px solid;
+            height: 50vh;
+            width: 40%;
+            margin: auto;
+            background-color: blanchedalmond;
+        }
+        .image{
+         border-radius: 300%;
+        padding-left: 245px;
+        }
+        .class2{
+            margin-top: 100px;
+            margin-left: 200px;
+            font-size: 50px;
+        }
+        #btn1 {
+            padding: 10px 15px;
+            color: rgb(228, 55, 2);
+        }
+
+        .unFriend{
+            padding: 10px 15px;
+            color: rgb(135, 25, 34);
+            font-size: 50px;
+        }
+
+        .h1 {
+            /* background-color: red; */
+            height: 25px;
+            text-align: center;
+        }
+        .name{
+            text-align: center;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <div>
+            <img src="Image/G2.jpg" width="150px" class="image" />
+            <h1 class="name">Hello JOHN</h1>
+            <div class="h1">
+                <span id="status" class="unFriend">Unknown</span>
+               
+            </div>
+        </div>
+        <div class="class2">
+            <button id="addFriendBtn" onclick="hello()">Add Friend</button>
+            <button id="removeFriendBtn" onclick="hello2()">Remove Friend</button>
+        </div>
+    </div>
+    <script src="Onclick.js"/>
+</body>
+
+</html>

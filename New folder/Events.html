@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="red"></h1>
+    <button onclick="hello()">ClickMe</button>
+    <!-- <button id="btn">Click Here</button> -->
+    <script>
+        const head = document.querySelector("h1")
+        const btn = document.getElementById("btn")
+        btn.addEventListener("click" , hello)
+        
+function hello(){
+    //console.log("alert")
+    //alert("Hello Sir How are you")
+   //const ok = confirm(" Do you want to cancel Or Submit")
+//console.log(ok);
+const name = prompt("please enter your name")
+console.log(name)
+head.innerText = name
+
+}
+    </script>
+    <script src="Events.js"></script>
+</body>
+</html>

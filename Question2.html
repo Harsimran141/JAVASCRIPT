@@ -1,0 +1,337 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="container" class="bg-cyan-200 h-screen w-full  flex  justify-center ">
+        <div id="subContnaier" class="w-96 h-48 bg-gray-300 space-y-4 ">
+            <!-- <h3>scoredata</h3> -->
+        </div>
+
+        <div id="scoreContainer"
+            class="hidden text-center w-80 h-72 border border-dashed border-gray-400 bg-slate-100 space-y-10">
+            <h1 class="heading"></h1>
+            <p id="emoji"></p>
+            <button id="Startbutton" class="bg-blue-700 px-7 py-2 text-center">Start Again</button>
+        </div>
+    </div>
+    <script>
+        const question = [
+            {
+                question: "What is the capital of France? 🇫🇷",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                answer: "Paris",
+            },
+            {
+                question: "Which planet is known as the Red Planet? 🪐",
+                options: ["Earth", "Mars", "Jupiter", "Saturn"],
+                answer: "Mars",
+            },
+            {
+                question: "What is the largest ocean on Earth? 🌊",
+                options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+                answer: "Pacific",
+            },
+            {
+                question: "Which country is famous for sushi? 🍣",
+                options: ["China", "Japan", "Korea", "Thailand"],
+                answer: "Japan",
+            },
+            {
+                question: "What is the boiling point of water? 💧",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                answer: "100°C",
+            },
+        ];
+
+        let questionIndex = 0;
+        let score = 0
+
+        // memory storage
+        let StringQuestion = JSON.stringify(questions)
+        localStorage.setItem("index", questionIndex)
+        let indexData = parseInt(localStorage.getItem("index"))
+        console.log(indexData)
+        localStorage.setItem("score", score)
+        let scoredata = parseInt(localStorage.getItem(score))
+
+        localStorage.setItem("index", indexData)
+        localStorage.setItem("score", scoredata)
+
+        localStorage.setItem("questions", StringQuestion)
+        let GetDataStr = localStorage.getItem("questions")
+        console.log(GetDataStr)
+
+
+
+        const mainContainer = document.getElementById("container")
+        const subContainer = document.getElementById("subContnaier")
+        const scoreData = document.getElementById("scoreContainer")
+        const headingData = document.querySelector(".heading")
+        const StartButton = document.querySelector("#Startbutton")
+        const emoji = document.getElementById("emoji")
+
+
+
+        // background colores 
+        const correctAnswer = "bg-cyan-400"
+        const inCorrectAnswer = "bg-red-400"
+        const BydefaultColor = "bg-cyan-200"
+
+        function QuestionArray(index) {
+
+            subContainer.innerHTML = ""
+
+            // if (index >= questions.length) {
+            //     scoreData.classList.remove("hidden")
+            //     subContainer.classList.add("hidden")
+            //     headingData.innerText = `Quiz is completed: score:${score} / ${questions.length}`
+            //     if (score > 3) {
+            //         emoji.innerText = "🥳"
+            //     }
+            //     else {
+            //         emoji.innerText = "🤦‍♀️"
+            //     }
+            // }
+
+            let currentQuestion = questions[index]
+            const heading = document.createElement("h1")
+            heading.classList.add("heading")
+            heading.style.fontSize = "23px"
+            // heading.style.color = "red"
+            heading.innerText = currentQuestion.question
+            console.log(heading)
+            const divContainer = document.createElement("div")
+
+            currentQuestion.options.forEach(item => {
+                console.log(item)
+                const button = document.createElement("button")
+                button.classList.add("list")
+                // button.classList.add("bg-white")
+                button.style.display = "flex"
+                button.innerText = item
+                divContainer.appendChild(button)
+                console.log(divContainer)
+            })
+            subContainer.appendChild(heading)
+            subContainer.appendChild(divContainer)
+
+            const listItem = document.querySelectorAll(".list")
+            listItem.forEach((element) => {
+                element.addEventListener("click", function () {
+                    
+                    if (element.innerHTML === currentQuestion.answer) {
+                        console.log("answere is correct")
+                        score++
+                        localStorage.setItem("score", score)
+                        mainContainer.classList.remove(BydefaultColor)
+                        mainContainer.classList.remove(inCorrectAnswer)
+                        mainContainer.classList.add(correctAnswer)
+                    }
+                    else {
+                        console.log("wrong answere")
+                        mainContainer.classList.remove(BydefaultColor)
+                        mainContainer.classList.remove(correctAnswer)
+                        mainContainer.classList.add(inCorrectAnswer)
+                    }
+                    setTimeout(function () {
+                        mainContainer.classList.add(BydefaultColor)
+                        mainContainer.classList.remove(inCorrectAnswer)
+                        mainContainer.classList.remove(correctAnswer)
+                    }, 1000)
+                    localStorage.setItem("index", index + 1)
+                    QuestionArray(index + 1)
+                })
+            })
+        }
+
+        StartButton.addEventListener("click", function () {
+            QuestionArray(0)
+            scoreData.classList.add("hidden")
+            subContainer.classList.remove("hidden")
+            score = 0
+            localStorage.setItem("index", 0)
+        })
+        QuestionArray(questionIndex)
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="container" class="bg-cyan-200 h-screen w-full  flex  justify-center ">
+        <div id="subContnaier" class="w-96 h-48 bg-gray-300 space-y-4 ">
+            <!-- <h3>scoredata</h3> -->
+        </div>
+
+        <div id="scoreContainer"
+            class="hidden text-center w-80 h-72 border border-dashed border-gray-400 bg-slate-100 space-y-10">
+            <h1 class="heading"></h1>
+            <p id="emoji"></p>
+            <button id="Startbutton" class="bg-blue-700 px-7 py-2 text-center">Start Again</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France? 🇫🇷",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                answer: "Paris",
+            },
+            {
+                question: "Which planet is known as the Red Planet? 🪐",
+                options: ["Earth", "Mars", "Jupiter", "Saturn"],
+                answer: "Mars",
+            },
+            {
+                question: "What is the largest ocean on Earth? 🌊",
+                options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+                answer: "Pacific",
+            },
+            {
+                question: "Which country is famous for sushi? 🍣",
+                options: ["China", "Japan", "Korea", "Thailand"],
+                answer: "Japan",
+            },
+            {
+                question: "What is the boiling point of water? 💧",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                answer: "100°C",
+            },
+        ];
+
+        let questionIndex = 0;
+        let score = 0
+
+        // memory storage
+        let StringQuestion = JSON.stringify(questions)
+        localStorage.setItem("index", questionIndex)
+        let indexData = parseInt(localStorage.getItem("index"))
+        console.log(indexData)
+        localStorage.setItem("score", score)
+        let scoredata = parseInt(localStorage.getItem(score))
+
+        localStorage.setItem("index", indexData)
+        localStorage.setItem("score", scoredata)
+
+        localStorage.setItem("questions", StringQuestion)
+        let GetDataStr = localStorage.getItem("questions")
+        console.log(GetDataStr)
+
+
+
+        const mainContainer = document.getElementById("container")
+        const subContainer = document.getElementById("subContnaier")
+        const scoreData = document.getElementById("scoreContainer")
+        const headingData = document.querySelector(".heading")
+        const StartButton = document.querySelector("#Startbutton")
+        const emoji = document.getElementById("emoji")
+
+
+
+        // background colores 
+        const correctAnswer = "bg-cyan-400"
+        const inCorrectAnswer = "bg-red-400"
+        const BydefaultColor = "bg-cyan-200"
+
+        function QuestionArray(index) {
+
+            subContainer.innerHTML = ""
+
+            // if (index >= questions.length) {
+            //     scoreData.classList.remove("hidden")
+            //     subContainer.classList.add("hidden")
+            //     headingData.innerText = `Quiz is completed: score:${score} / ${questions.length}`
+            //     if (score > 3) {
+            //         emoji.innerText = "🥳"
+            //     }
+            //     else {
+            //         emoji.innerText = "🤦‍♀️"
+            //     }
+            // }
+
+            let currentQuestion = questions[index]
+            const heading = document.createElement("h1")
+            heading.classList.add("heading")
+            heading.style.fontSize = "23px"
+            // heading.style.color = "red"
+            heading.innerText = currentQuestion.question
+            console.log(heading)
+            const divContainer = document.createElement("div")
+
+            currentQuestion.options.forEach(item => {
+                console.log(item)
+                const button = document.createElement("button")
+                button.classList.add("list")
+                // button.classList.add("bg-white")
+                button.style.display = "flex"
+                button.innerText = item
+                divContainer.appendChild(button)
+                console.log(divContainer)
+            })
+            subContainer.appendChild(heading)
+            subContainer.appendChild(divContainer)
+
+            const listItem = document.querySelectorAll(".list")
+            listItem.forEach((element) => {
+                element.addEventListener("click", function () {
+                    console.log("hello")
+                    if (element.innerHTML === currentQuestion.answer) {
+                        console.log("answere is correct")
+                        score++
+                        localStorage.setItem("score", score)
+                        mainContainer.classList.remove(BydefaultColor)
+                        mainContainer.classList.remove(inCorrectAnswer)
+                        mainContainer.classList.add(correctAnswer)
+                    }
+                    else {
+                        console.log("wrong answere")
+                        mainContainer.classList.remove(BydefaultColor)
+                        mainContainer.classList.remove(correctAnswer)
+                        mainContainer.classList.add(inCorrectAnswer)
+                    }
+                    setTimeout(function () {
+                        mainContainer.classList.add(BydefaultColor)
+                        mainContainer.classList.remove(inCorrectAnswer)
+                        mainContainer.classList.remove(correctAnswer)
+                    }, 1000)
+                    localStorage.setItem("index", index + 1)
+                    QuestionArray(index + 1)
+                })
+            })
+        }
+
+        StartButton.addEventListener("click", function () {
+            QuestionArray(0)
+            scoreData.classList.add("hidden")
+            subContainer.classList.remove("hidden")
+            score = 0
+            localStorage.setItem("index", 0)
+        })
+        QuestionArray(questionIndex)
+
+
+    </script>
+</body>
+
+</html>

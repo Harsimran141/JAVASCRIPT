@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: black;
+        }
+
+        .box {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            transition: ease all 0.2s;
+            mix-blend-mode: difference;
+        }
+
+        h1 {
+            font-size: 100px;
+            color: white;
+            mix-blend-mode: difference;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Mouse Move</h1>
+        <div class="box"></div>
+    </div>
+    <script>
+
+        const box = document.querySelector('.box');
+
+        document.addEventListener('mousemove', (event) => {
+            box.style.left = event.clientX + 'px';
+            box.style.top = event.clientY + 'px';
+        })
+    </script>
+</body>
+
+</html>
