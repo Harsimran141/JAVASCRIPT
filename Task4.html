@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-96 border px-10 py-8 m-auto">
+        <p id="phara">From the forested hills in the west, home to Gond and Baiga tribal
+            communities, downstream to the plains in the southeast, 
+            where farmers grow mostly paddy and sugarcane, the Kabirdham 
+            landscape covers more than 200,000 hectares. On average, these smallholder 
+           farmers work on no more than 2 hectares per household.</p>
+           <button id="btn" class="bg-cyan-400 text-2xl mt-5 rounded-2xl py-2 px-4">Dark page</button>
+           </div>
+
+
+</body>
+<script>
+    const phara1 = document.getElementById("phara");
+     const btn = document.getElementById("btn")
+     btn.addEventListener("click",function(){
+     phara1.classList.toggle("bg-red-400")
+     phara1.classList.toggle("text-white")
+     phara1.classList.toggle("text-xl")
+     btn.classList.toggle("text-white")
+          
+if(btn.innerText=="Dark Page"){
+    btn.innerText="Light Page"
+    btn.classList.toggle("text-green-600")
+}
+else{
+    btn.innerText="Dark Page"  
+}
+     });
+     
+
+</script>

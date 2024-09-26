@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="m-auto w-[696px] h-96 bg-blue-400  rounded-2xl">
+    <div>
+      <h1 class="font-bold text-4xl text-red-600 text-center">TO - DO - LIST</h1>
+      <div class="flex gap-8 mt-10">
+        <input id="input" type="text" class="  bg-white  m-auto rounded-md" placeholder="Enter Your Task">
+        <button id="addbtn" class="bg-red-600  px-5 rounded-md text-white text-2xl">Add</button>
+      </div>
+    </div>
+    <div class="flex w-full">
+      <ul class="w-full" id="userlist"></ul>
+    </div>
+  </div>
+  <script>
+    let setinput = [];
+    const input = document.getElementById("input");
+    const btn = document.getElementById("addbtn");
+    const userlist = document.getElementById("userlist");
+
+    btn.addEventListener('click', () => {
+      let record = input.value.trim();
+      const object = {
+        name: record,
+        Lname: "Singh",
+        id: window.crypto.randomUUID()
+
+      }
+      setinput.push(object)
+      localStorage.setItem('name', JSON.stringify(setinput));
+      input.value = '';
+      console.log(setinput);
+      displaydata();
+    })
+    function displaydata() {
+      userlist.innerHTML = '';
+      setinput.map((element) => {
+      const li = document.createElement('li');
+        li.className = "text-2xl text-white bg-green-600 flex w-full";
+        li.innerHTML = element.name
+        const cbtn = document.createElement('button');
+        cbtn.innerHTML = "DEL";
+        cbtn.classList.add('delbtn')
+        cbtn.setAttribute("data-id", element.id)
+        userlist.appendChild(li);
+        cbtn.addEventListener('click', function () {
+          const dataid = cbtn.getAttribute('data-id');
+          setinput = setinput.filter((item) => item.id !== dataid)
+          displaydata()
+        })
+        li.appendChild(cbtn);
+        userlist.appendChild(li);
+
+
+      })
+    }
+  </script>
+</body>
+
+</html>

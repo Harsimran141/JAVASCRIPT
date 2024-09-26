@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <div class=" h-full m-40 br-2px bg-green-200">
+    <button id="button" class="bg-red-400 text-white m-40 p-5">Javascript</button>
+    <p id="Remove" class="hidden">
+
+      A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic.
+      Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.
+      This is because paragraphs show a reader where the subdivisions of an essay begin and end,
+      and thus help the reader see the organization of the essay and grasp its main points
+    </p>
+  </div>
+  </div>
+  <script>
+    const Remove = document.getElementById("Remove");
+    const button = document.getElementById("button");
+
+    button.addEventListener("click", function () {
+      Remove.classList.remove("hidden")
+      localStorage.setItem("IsContentVisible", true)
+    })
+    function onPageLoad() {
+      let IsContentVisible = localStorage.getItem("IsContentVisible") || false
+      // console.log(IsContentVisible);
+      if (IsContentVisible) {
+        Remove.classList.remove("hidden")
+      }
+      else {
+        Remove.classList.add("hidden")
+      }
+    }
+    onPageLoad()
+
+  </script>
+</body>
+
+</html>

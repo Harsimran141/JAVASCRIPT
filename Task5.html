@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <div class="w-[696px] h-96  bg-lime-950 rounded-md mt-10 shadow-10 border-4xl px-10 m-auto">
+
+        <div>
+            <input id="input" class="mt-10 w-[402px] rounded-md" type="text" placeholder="Enter your Task">
+            <button id="btn"
+                class="px-2 ml-10 shadow-10 text-red-600  bg-white  rounded-md text-2xl font-bold">ADD</button>
+            <button id="update"
+                class="hidden px-2 ml-10 shadow-10 text-red-600  bg-white  rounded-md text-2xl font-bold">Update</button>
+        </div>
+
+
+        <ul id="Ulist">
+
+        </ul>
+
+        <script>
+            let data = [];
+            const Updatebtn = document.getElementById('update')
+            const input = document.getElementById('input');
+            const btn = document.getElementById('btn');
+            const userlist = document.getElementById('Ulist');
+            Updatebtn.addEventListener('click',update)
+            btn.addEventListener('click', function () {
+                let record = input.value.trim();
+                let object = {
+                    name: record,
+                    id: window.crypto.randomUUID()
+                }
+                data.push(object)
+                localStorage.setItem('name', JSON.stringify(data))
+                input.value = '';
+                console.log(record);
+                Display();
+            })
+            function Display() {
+                userlist.innerHTML = "";
+                data.map((items) => {
+                    let list = document.createElement('li');
+                    list.classList = "text-xl text-amber-700 font-bold";
+                    list.innerHTML = items.name;
+                    userlist.appendChild(list);
+                    let Delbtn = document.createElement('button')
+                    let Editbtn = document.createElement('button');
+                    Editbtn.classList = "text-xl text-green-700 font-bold"
+                    Editbtn.innerHTML = 'EDIT';
+                    list.appendChild(Editbtn);
+                    Editbtn.setAttribute('ebtn', items.id);
+                    Editbtn.addEventListener('click', function () {
+                        let edata = Editbtn.getAttribute('ebtn');
+                        // let Editdata =  Editbtn.setAttribute('parameter',items.id);
+                        let ndata = data.find((item) => item.id == edata)
+                        // console.log(edata);
+                        // console.log(ndata);
+                        Updatebtn.classList.remove('hidden');
+                        btn.classList.add('hidden');
+                        input.value = ndata.name
+                        Updatebtn.setAttribute('dataid',ndata.id)
+
+                    })
+
+                    Delbtn.classList = "text-xl text-yellow-50 font-bold ml-30";
+                    Delbtn.innerHTML = 'DEL';
+                    list.appendChild(Delbtn);
+                    Delbtn.addEventListener('click', function () {
+                        data = data.filter(function (item) {
+                            if (item.id !== items.id) {
+                                return (item);
+                            }
+                        })
+                        Display()
+                    })
+
+
+                })
+            }
+        
+
+        function update(){
+            let id = Updatebtn.getAttribute('dataid')
+             data = data.map((item)=>{
+                 console.log(item.id);
+                 console.log(id);
+                 if(item.id === id){
+                     return{
+                         ...item,
+                         name:input.value,
+                         
+                     }
+                 }
+                 return item
+                })
+                console.log(data);
+             Display();
+        }
+
+
+
+
+
+        </script>
+
+
+</body>
+
+</html>

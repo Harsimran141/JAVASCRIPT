@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="display" class="w-[796px] h-[396px] bg-yellow-200 m-auto mt-10 rounded-md">
+        <div>
+
+            <ul id="userlist"></ul>
+        </div>
+    </div>
+    <script>
+        const data = [
+            {
+                name: 'Harsimran',
+                lname: 'singh',
+            },
+            {
+                name: 'Rupinder',
+                lname: 'kaur',
+            },
+            {
+                name: 'Jaskaran',
+                lname: 'singh',
+            },
+            {
+                name: 'Amit',
+                lname: 'kumar',
+            },
+            {
+                name: 'Sandeep',
+                lname: 'singh'
+            },
+        ];
+
+            const userlist = document.getElementById('userlist');
+            data.map((element) => {
+            const list = document.createElement('li');
+            list.innerHTML = element.name
+            list.classList.add('listed')
+            userlist.appendChild(list)
+            })  
+           const listed = document.querySelectorAll('.listed');
+           console.log(listed);
+           listed.forEach((element)=>{
+            element.addEventListener('click',function(){
+
+                console.log(element.innerText)
+              
+            })
+           
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+    //     const listed = document.querySelectorAll('li')
+    //     console.log(listed);
+    //       listed.forEach((element) => {
+
+    //  element.addEventListener('click',function(){
+    //     console.log(element.innerText)
+    //     // alert(element.innerText)
+    //  })
+    //         });
+    </script>
+</body>
+
+</html>

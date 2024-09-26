@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<p id="myclass" class="myclass">Registration Form For Admission</p>
+<script>
+var p = document.getElementById("myclass");
+p.setAttribute('class','My Class name is computer class');
+var getAt = p.getAttribute('id');
+console.log(getAt);
+
+console.log(p);
+
+
+    // simple function with single parameter without return
+  // function fun1 (){
+  //   console.log("Hello India")
+//   }
+// fun1()
+// Arrow function with single parameter without return
+
+// const data = () =>{
+//     console.log("Hello jaskaran sir")
+// }
+// data()
+
+// simple function with multiple parameters with return
+
+// function Record (param){
+    // console.log("boparai")
+// }
+// Record(set1);
+
+// let sin = [1,2,3,4]
+// let sum = 0
+// function rec(a){
+//    for(let i=0;i<sin.length;i++){
+//     sum += sin[i]
+//    }
+//    console.log(sum)
+//   }
+// rec(sin)
+
+// let Record ={Name:"Harsimran",
+//              Roll:"234890",
+//              Trade:"IT",
+// };
+// let {Roll,Trade,Name} = Record
+
+// console.log(Roll,Trade,Name);
+
+// const Rec = [1,2,3,4]
+// let [a,b,c,d] = Rec;
+// console.log(a,b,c,d)
+
+
+// Destructring of Array
+
+// const Record = {
+//   Fname:"Harsimran",
+//   Mname:"Pal",
+//   Lname:"singh",
+//   Trade:"Information Technology",
+//   Mob:"9053584300",
+//   Address:"30 Kettlewell cresent",
+//   City:"Brampton"};
+// let {Fname,Mname,Lname,Trade} = Record
+// console.log([Fname,Mname,Lname,Trade,])
+
+// Add Number with for loop in Array
+//
+
+// const number1 = [2,3,4,5,6];
+// let num1 = 0
+// for(let index=0;index<number1.length;index++)
+// {
+//   num1 += number1[index]
+// }
+// console.log(num1);
+
+
+
+// let num1 = [2,4]
+// let num2 = 0
+// for(let index=0;index<num1.length;index++)
+// {
+//   num2 += num1[index]
+// }
+// console.log(num2);
+
+// const name = ["Harsimran","Jaskaran sir","Rupinder mam"];
+// for(let i = 0;i<name.length; i++){
+//   console.log(i,name,[i]);
+// }
+//  Array method filter
+
+// const people = [
+//   {
+//     name:'Bopara',
+//     age:18,
+//   },
+//   {
+//   name:"akshay",
+//   age:24,
+// },
+// {
+//   name:"ravi",
+//   age:15,
+
+// },
+// {
+//   name:"paravi",
+//   age:21,
+
+// },
+// {
+//   name:"jaideep",
+//   age:12,
+
+// },
+
+// {
+//   name:"akash",
+//   age:14,
+
+// },
+// ];
+// const adults = people.filter(person => person.age >= 18);
+// console.log(adults);
+
+// // Destructring of Array
+
+// const Record = [2,3,4,5,6,7]
+// let [a,b,c,d,e,f] = Record
+// console.log(a,b,c,d,e,f);
+
+
+
+// const data ={
+//   name:"abc",
+//   age:"10",
+//   Mob:"9025648",
+//   Trade:"Finance",
+//   Address:"Brapton",
+// };
+
+// let {name,age,Mob} = data
+// console.log(data);
+
+
+// simple function
+
+// function Rec(){
+//   let data = [2,3,4,6]
+
+// }
+// console.log(Rec);
+
+// let Fname = ['Harsimran','Jarman','Kartar','Mandeep','Joban','Ramandeep']
+
+// Fname.forEach(function(a){
+//   console.log(a);
+// })
+  
+// Fname.forEach((Fname) => {
+// console.log(Fname);
+// })
+
+//   const month = ['January','February','March','April',
+//   'May','June','July','August','September',
+//   'october','November','December']
+// month.map((month) =>{
+//   console.log(month);
+// return(month);
+// })
+
+
+// const months = ['January','February','March','April',
+//   'May','June','July','August','September',
+//   'october','November','December']
+// months.map((month) => {
+//   console.log(month);
+
+// })
+
+// simple function
+ 
+
+// function number1(){
+//   console.log(10+15);
+// }
+// number1()
+
+// function num2(a,b,c){
+//   console.log(2+3+4)
+// }
+// num2()
+//   const number1 = ()=>{
+//   console.log(1+2+3)
+//   }
+// number1()
+//  Arrow function with single parameter
+
+// const num1 = (a,b) =>{
+// console.log(a+b)
+// } 
+
+// num1(1,2)
+
+//  const num2 = parameter =>{
+// console.log("hello " + parameter)
+//  }
+// num2("Harsimran")
+// num2("Jaskaran sir")
+
+//  function sayhello (name){
+// return("hi," + name + "Wel come to javascript")
+//  }
+
+// let output = sayhello("harsimran pal")
+// console.log(output)
+
+// const sayhelo = (name1) => "hello"+ name1;
+// // let data = sayhelo("Javascript")
+// console.log(sayhelo("singh"))
+// // // console.log(data);
+//  const Record = {
+//   name:"Harsimran",
+//   Lname:"Singh",
+//   Email:"Harsimra141@gmail.com",
+//  }
+// for(const data in Record){
+//   console.log(Record[data])
+// }
+//  how to conver object to Array
+
+// const item = {
+//   name:"Agadh singh",
+//   Email:"Agadh009@gmail.com",
+//   Mob:'98709870',
+//   Address:"Chattiwind"
+// }
+// const arr = Object.values(item);
+// console.log(arr);
+ 
+
+
+
+</script>
+</body>
+</html>

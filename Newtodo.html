@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css"
+    />
+    <style>
+      body {
+        background: rgb(239, 237, 237);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="w-96 shadow-xl shadow-inner bg-white m-auto px-3 rounded-xl pb-8">
+      <div class="w-80 h-fit m-auto mt-4">
+        <div class="py-4">
+          <h1 class="text-2xl font-semibold">My To-Do List</h1>
+        </div>
+        <div class="flex w-full">
+          <input
+            type="text"
+            id="inputText"
+            class="px-1 w-[86%] ring-1 ring-gray-200"
+            placeholder="Enter a new task"
+          />
+          <button
+            id="addText"
+            class="text-white bg-blue-500 py-2 w-24 font-semibold">
+            Add Task
+          </button>
+        </div>
+        <div>
+          <ul id="listItem"></ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      const inputText = document.getElementById("inputText");
+      const addData1 = document.getElementById("addText");
+      const listItem = document.getElementById("listItem");
+      addData1.addEventListener("click", addData);
+      let objArr = JSON.parse(localStorage.getItem("todolist1")) || [];
+
+      function addData() {
+        console.log(inputText.value);
+        if (inputText.value == "") {
+          alert("please entern task");
+          return;
+        }
+        // console.log("add task ");
+
+        let userTask = inputText.value.trim();
+        let taskObj = {
+          id: uniqueId(),
+          taskName: userTask,
+          taskStatus: false,
+        };
+        objArr.push(taskObj);
+        displayList();
+        StorageData();
+        inputText.value = "";
+      }
+
+      function displayList() {
+        listItem.innerHTML = "";
+        objArr.map((element) => {
+          const listItem1 = ` 
+
+            <li class="flex justify-between items-center bg-gray-100 w-full hover:bg-gray-200 p-2 my-2 rounded">
+                
+                <span class=""><input type="checkbox" name="" id="" ${
+                  element.taskStatus ? "checked" : ""
+                } class="" onclick="checkList('${element.id}')"></span>
+              <p class=" w-full  px-3 ${
+                element.taskStatus ? "line-through" : ""
+              } " onclick="updateTask('${element.id}')">${element.taskName}</p>
+              <button  class="deleteButton" data-id="${
+                element.id
+              }"><i class="fa-solid fa-trash-arrow-up text-red-600 text-xl"></i></button>
+              
+              </li>`;
+          listItem.innerHTML += listItem1;
+        });
+        const delbtn = document.querySelectorAll(".deleteButton");
+        delbtn.forEach((element) => {
+          element.addEventListener("click", function () {
+            const delItem = element.getAttribute("data-id");
+            if (confirm("are you sure you want to delete")) {
+              objArr = objArr.filter((item) => item.id !== delItem);
+              displayList();
+              StorageData();
+            }
+          });
+        });
+      }
+
+      function updateTask(event) {
+        const task = objArr.find((item) => item.id === id);
+        console.log("update task");
+
+        if (task) {
+          inputText.value = task.taskName;
+          addData1.removeEventListener("click", addData);
+          addData1.addEventListener("click", updateTask1);
+          addData1.innerText = "Update";
+          addData1.task = task
+          displayList();
+          StorageData();
+        }
+      }
+      function updateTask1() {
+      
+        task.taskName = inputText.value.trim();
+        inputText.value = "";
+        addData1.removeEventListener("click", updateTask1);
+        addData1.addEventListener("click", addData);
+        addData1.innerText = "Add Task";
+        displayList();
+        StorageData();
+      }
+
+      function checkList(id) {
+        objArr = objArr.map((elm) =>
+          elm.id === id ? { ...elm, taskStatus: !elm.taskStatus } : elm
+        );
+
+        displayList();
+        
+        StorageData();
+      }
+      
+
+      function uniqueId() {
+        return window.crypto.randomUUID();
+      }
+      function StorageData() {
+        localStorage.setItem("todolist1", JSON.stringify(objArr));
+      }
+      displayList();
+    </script>
+  </body>
+</html>

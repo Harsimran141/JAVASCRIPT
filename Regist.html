@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="max-w-96 h-full bg-amber-100 m-auto rounded-lg">
+        <div class="content-justify py-4 px-4">
+
+            <form id="registrationForm">
+                <div>
+                    <div>
+                        <h1 class="text-center text-4xl m-auto text-indigo-700">Registration Form</h1>
+                    </div>
+
+                    <label for="">User Name</label>
+                    <input id="input" type="text" class="mt-4 rounded-md ml-8">
+                    <span id="usernameError" class="text-red-500"></span>
+                    <div>
+                    </div>
+                    <label for="">Last Name</label>
+                    <input id="lastname" type="text" class="mt-4 rounded-md ml-8">
+                    <span id="lastdisplay" class="text-red-500"></span>
+                    <div class="mt-4">
+                        <label  for="text" class="">Email<span class="text-red-500">*</span></label>
+                        <input id="email" type="text" class="ml-[71px] rounded-md">
+                        <span id="emailError" class="text-red-500 text-sm"></span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="text">Password<span class="text-red-500">*</label>
+                    <input id="password" type="password" class="ml-[44px] rounded-md">
+                    <span id="passwordError" class="text-red-500 text-md"></span>
+                    
+                </div>
+                <div>
+                    <label for="confirmpassword">Confirmpassword<span class="text-red-500">*</label>
+                    <input id="confirmPassword" type="password" class="mt-4 rounded-md">
+                    <span id="togglePassword" class="text-red-600 text-md"></span>
+                    <span id="confirmPasswordError" class="text-red-500 text-sm"></span>
+                </div>
+                <button id="btn" class="bg-blue-600 mt-10 ml-36 text-white text-xl py-1 px-1 rounded-md">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let form = document.getElementById("registrationForm");
+        const Input = document.getElementById("input");
+        const Display = document.getElementById("usernameError");
+        const lastname = document.getElementById("lastname");
+        const lastdisplay = document.getElementById("lastdisplay");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const passwordError = document.getElementById("passwordError");
+        const confirmpassword = document.getElementById("confirmpassword");
+        const togglePassword = document.getElementById("togglePassword");
+        const confirmPasswordError = document.getElementById("confirmPasswordError");
+        const emailError = document.getElementById("emailError");
+        const btn = document.getElementById("btn");
+        Input1.addEventListener('input', function () {
+            let data1 = Input1.value
+
+            if (data1.length < 4 || data1.length > 6) {
+                Display1.innerText = 'last name at least between 4 to 6 characters';
+            } else {
+                Display1.innerHTML = data1
+            }
+        });
+        
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let isValid = true;
+            
+            let data = Input.value
+
+            if(data ===""){
+            Display.innerHTML = 'User name is Required.';
+        }else if(data.length < 3 || data.length >10){
+            Display.innerHTML = 'Username Must be between 3 and 10 Characters.';
+            
+        }else{
+            Display.innerHTML = '';
+        }
+         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email.value ===''){
+                emailError.innerHTML = 'Email is Required';
+                isValid = false;
+            }else{
+                emailError.textContent = '';
+            }
+            if(password.value ===""){
+             passwordError.innerText = 'password is required';
+             isValid = false;
+            }else if(password.value.length < 4 || password.value.length >10){
+                passwordError.innerText = 'Password must be between 8 and 30 characters long.';
+                isValid = false;
+            }else{
+                passwordError.textContent = '';
+            }
+              if (confirmPassword.value === ""){
+                confirmPasswordError.innerText = "confirmpassword is Required.";
+                isValid = false;
+              }else if(confirmPassword.value !== password.value){
+                confirmpasswordError.innerHTML = "confirmpassword do not match.";
+                isValid = false;
+              }else{
+                confirmPasswordError.value = "";
+              }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

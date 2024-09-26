@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+<body>
+<div class="w-full h-96 border border-2xl px-10">
+ 
+    <ul id="ulist">
+
+
+ </ul>
+
+
+
+</div>
+ <script>
+const userlist = document.getElementById('ulist');
+
+        let tasks = [
+    {
+      name: "Michael Foster",
+      commitId: "2d89f0c8",
+    //    image: Michael,
+      branch: "main",
+      status: "Completed",
+      duration: "25s",
+      timestamp: "45 minutes ago",
+    },
+    {
+      name: "Lindsay Walton",
+      commitId: "249df660",
+    //    image:Lindsay, 
+      branch: "main",
+      status: "Completed",
+      duration: "1m 32s",
+      timestamp: "3 hours ago",
+    },
+    {
+      name: "Courtney Henry",
+      commitId: "11464223",
+    //   image:Courtney,
+      branch: "main",
+      status: "Error",
+      duration: "1m 4s",
+      timestamp: "12 hours ago",
+    },
+    {
+      name: "Courtney Henry",
+      commitId: "dad28e95",
+    //    image:Courtney,
+      branch: "main",
+      status: "Completed",
+      duration: "2m 15s",
+      timestamp: "2 days ago",
+    },
+    {
+      name: "Michael Foster",
+      commitId: "624bc94c",
+    //   image:Michael,
+      branch: "main",
+      status: "Completed",
+      duration: "1m 12s",
+      timestamp: "5 days ago",
+    },
+    {
+      name: "Courtney Henry",
+      commitId: "e111f80e",
+        // image:Courtney,
+      branch: "main",
+      status: "Completed",
+      duration: "1m 56s",
+      timestamp: "1 week ago",
+    },
+    {
+      name: "Michael Foster",
+      commitId: "5e136005",
+    //    image:Michael,
+      branch: "main",
+      status: "Completed",
+      duration: "3m 45s",
+      timestamp: "1 week ago",
+    },
+    {
+      name: "Whitney Francis",
+      commitId: "5c1fd07f",
+    //   image:Whitney,
+      branch: "main",
+      status: "Completed",
+      duration: "37s",
+      timestamp: "2 weeks ago",
+    },
+  ];
+function Display(){
+
+    tasks.map((item) => {
+        const list = document.createElement('li');
+        list.className = 'mb-4 p-4  rounded shadow flex justify-between';
+        
+        const name = document.createElement('h3');
+        name.className = 'text-lg font-semibold text-gray-800';
+        name.innerHTML = item.name;
+        list.appendChild(name);
+        
+        const para = document.createElement('p');
+        para.className = 'mt-2 text-sm text-gray-600';
+        para.innerHTML = item.status;
+        list.appendChild(para);
+        userlist.appendChild(list);
+        const dbtn = document.createElement('button');
+        dbtn.className = "delbtn w-10 h-10 bg-red-800 text-white rounded-md ";
+        dbtn.innerHTML = "DEL"
+        list.appendChild(dbtn);
+    })
+}
+let btns = document.querySelectorAll('.delbtn')
+btns.forEach((element,index) =>{
+    element.addEventListener('click',function(){
+    tasks = tasks.filter((item,ind) =>  {
+        if(ind !== index){
+            return(item);
+            
+        }
+        console.log(ind)
+    })
+    console.log(tasks)
+    Display();
+    })
+   
+});
+Display();
+    </script>
+</body>
+</html>

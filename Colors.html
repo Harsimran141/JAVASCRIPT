@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="m-auto bg-pink-300 w-full py-5 mt-10 rounded-md text-center">
+        <button id="id1" type="button"  class="w-20 bg-white rounded-md ">RED</button>
+        <button id="id2" type="button" class="w-20 bg-white rounded-md ">BLUE</button>
+        <button id="id3" type="button" class="w-20 bg-white rounded-md ">ORANGE</button>
+        <button id="id4" type="button" class="w-20 bg-white rounded-md ">GREEN</button> 
+        <button id="id5" type="button" class="w-20 bg-white rounded-md ">BROWN</button> </div>
+<script>
+const Red = document.getElementById("id1");
+const Blue = document.getElementById("id2");
+const White = document.getElementById("id3");
+const Green = document.getElementById("id4");
+const Brown = document.getElementById("id5");
+Red.addEventListener("click",Change1,)
+
+function Change1(){
+    document.bgColor="red"
+};
+Blue.addEventListener("click",change2,)
+function change2(){
+    document.bgColor="blue"
+}
+ White.addEventListener("click",change3,)
+ function change3(){
+    document.bgColor="orange"
+ }
+ Green.addEventListener("click",change4,)
+ function change4(){
+    document.bgColor="green"
+ }
+
+ Brown.addEventListener("click",change5,)
+ function change5(){
+    document.bgColor="brown"
+ }
+</script>
+
+
+
+    </body>
+</html>

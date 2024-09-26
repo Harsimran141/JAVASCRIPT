@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="m-auto bg-cyan-800 w-[872px] h-96 px-5 rounded-2xl">
+        <div class="py-2  space-y-3">
+            <h1 class=" font-bold text-5xl text-center text-white bg-red-600">To Do App</h1>
+            <div class="input flex gap-2">
+                <input id="inp" class=" w-[356px] h-10 m-auto rounded-md " type="text" placeholder="Enter your task">
+                <button id="btn" class=" bg-cyan-800 bg-red-800 text-white p-4   text-4xl rounded-md">Add</button>
+                <button id="UpdateBtn" class=" hidden bg-cyan-800 text-white text p-4 bg-green-500 rounded-md">UpDate</button>
+
+            </div>
+            <div class="text">
+                <ul id="userlist">
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        let setinput = [];
+       
+        const inputs = document.getElementById("inp");
+
+        const btn = document.getElementById("btn");
+        const userlist = document.getElementById("userlist");
+        btn.addEventListener("click", addData)
+        // let starray = JSON.parse(localStorage.getItem("todolist1")) || [];
+        const UpdateBtn = document.getElementById("UpdateBtn")
+        UpdateBtn.addEventListener("click",Update)
+        let todolistSTR = localStorage.getItem("todolist1")
+
+        let todolistJSON = JSON.parse(todolistSTR)
+         function addData() {
+            let task = inputs.value.trim()
+
+            let record = {
+                id: window.crypto.randomUUID(),
+                name: task,
+                completed: false,
+            }
+
+
+            inputs.value = ""
+            setinput.push(record)
+
+            let todos = JSON.stringify(setinput)
+
+            localStorage.setItem("todolist1", todos)
+            Display();
+        }
+
+        function Display() {
+            userlist.innerHTML = "",
+                setinput.map((element) => {
+                    const listdata = `<li class="flex w-full"> 
+                        <p class="w-full"> ${element.name}</p> 
+                        <button class="Deleteitem bg-red-600 p-4 rounded-md text-white text-3xl" data-id="${element.id}">DEL</button>
+                          <button class="EditItem ml-4 bg-green-600 p-4 text-3xl text-white rounded-md" data-id="${element.id}">EDIT</button>
+        </li>`
+                    userlist.innerHTML += listdata
+ 
+                })
+            const deleteItem = document.querySelectorAll(".Deleteitem")
+
+            deleteItem.forEach((element) => {
+                element.addEventListener("click", function () {
+                    const deleteId = element.getAttribute("data-id")
+                    setinput = setinput.filter((item) => item.id !== deleteId)
+
+                    Display()
+                });
+            })
+            const EditItem = document.queryS
+            
+            electorAll(".EditItem")
+            EditItem.forEach((element) => {
+                element.addEventListener("click", function () {
+                    const EditItem = element.getAttribute("data-id")
+                    localStorage.setItem('currentedititam',EditItem)
+                    let EditItems = setinput.find((item) => item.id == EditItem)
+                    inputs.value = EditItems.name
+                 btn.classList.add("hidden")
+                 UpdateBtn.classList.remove("hidden")
+                })
+            })
+
+        }
+        function Update(){
+            let Updateid = localStorage.getItem('currentedititam')
+            setinput = setinput.map((items)=>
+            items.id == Updateid ?{...items,name:inputs.value} : items
+        )
+       Display()
+            
+        btn.classList.remove("hidden")
+        UpdateBtn.classList.add("hidden")
+        inputs.value =""
+         }
+    </script>
+</body>
+
+</html>

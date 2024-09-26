@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div>
+        <button id="button" class="w-20 bg-green-700 text-white m-20">Javascript</button>
+         <p id="remove" class="hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+            Iure molestias aspernatur nesciunt. Illum pariatur explicabo in maxime, 
+            voluptate, alias perspiciatis soluta<br>
+             a dolor harum quam itaque eligendi accusantium! Quaerat, distinctio.</p>
+    </div>
+
+<script>
+const button = document.getElementById("button");
+const remove = document.getElementById("remove");
+button.addEventListener("click",function(){
+    remove.classList.remove("hidden")
+
+
+})
+
+
+</script>
+
+</body>
+</html>

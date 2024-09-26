@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-400">
+
+    <div class="flex items-center justify-center h-screen bg-gray-100"></div>
+
+        <div class="max-w-md w-full bg-red-100 p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
+            <form id="registrationForm">
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700">Username <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="username" name="username"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <span id="usernameError" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email <span class="text-red-500">*</span> </label>
+                    <input type="text" id="email" name="email"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <span id="emailError" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Password <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        <button type="button" id="togglePassword" class="absolute right-3 top-2 text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span id="passwordError" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="confirmPassword" class="block text-gray-700">Confirm Password <span
+                            class="text-red-500">*</span> </label>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        <button type="button" id="toggleConfirmPassword" class="absolute right-3 top-2 text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span id="confirmPasswordError" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">Register</button>
+                </div>
+            </form>
+        </div>
+        <script>
+
+            let Form = document.getElementById("registrationForm")
+            let username = document.getElementById("username")
+            let usernameError = document.getElementById("usernameError")
+            let email = document.getElementById("email")
+            let emailError = document.getElementById("emailError")
+            let password = document.getElementById("password")
+            let togglePassword = document.getElementById("togglePassword")
+            let passwordError = document.getElementById("passwordError")
+            let confirmPassword = document.getElementById("confirmPassword")
+            let toggleConfirmPassword = document.getElementById("toggleConfirmPassword")
+            let confirmPasswordError = document.getElementById("confirmPasswordError")
+
+            togglePassword.addEventListener('click', function () {
+                let currentTypeOfInput = password.getAttribute('type');
+                if (currentTypeOfInput === 'password') {
+                    password.setAttribute('type', 'text')
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }else{
+                    password.setAttribute('type','password');
+                    this.innerHTML  = '<i class="fas fa-eye-slash"></i>';
+
+                }
+
+            });
+
+            toggleConfirmPassword.addEventListener('click',function (){
+                let currentTypeOfInput = confirmPassword.getAttribute('type');
+                if (currentTypeOfInput === 'password'){
+                    confirmPassword.setAttribute('type','text')
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }else{
+                    confirmPassword.setAttribute('type','password');
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                }
+            });
+
+           form.addEventListener('submit', function(event){
+            event.prevent.default();
+            let isValid = true; 
+           })
+
+          if(username.value === ''){
+            usernameError.textContent = 'username is required.';
+            isValid = false;
+           }else if(username.value.length < 3 || username.value.length > 20){
+            usernameError.textContent = 'username must be between 3 and 20 charactyers';
+            isValid = false;
+            }else{
+                usernameError.textContent = "";
+            }
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email.value ===''){
+                emailError.textContent = 'Email is Required';
+                isValid = false;
+            }else{
+                emailError.textContent = '';
+            }
+            if (password.value ===""){
+                passwordError.textContent = 'password is required.';
+                isValid = false;
+            }else if (password.value.length < 6 || password.value.length > 10){
+                passwordError.textContent = 'Password must be between 8 and 30 characters long.';
+                isValid = false;
+            }else{
+                passwordError.textContent = '';
+            }
+            if(confirmPassword.value ===''){
+                confirmPassword.textContent = 'Confirm password is required.';
+                isValid = false;
+               }else if(confirmPassword.value !== password.value){
+                confirmPasswordError.textContent = 'password do not match.';
+                isValid = false;
+               }
+            else {
+                confirmPasswordError.textContent = '';
+            }
+
+            // If form is valid, submit it
+            if (isValid) {
+                // Create an object with form data
+                const formData = {
+                    username: username.value,
+                    email: email.value,
+                    password: password.value
+                };
+
+                // Convert the object to JSON and log it
+                console.log(JSON.stringify(formData, null, 2));
+
+                // You can remove this alert if you want to keep only the console output
+                alert('Form data logged to console. Check browser developer tools.');
+            }
+        
+
+  
+        </script>
+    </body>
+
+
+
+
+
+</html>

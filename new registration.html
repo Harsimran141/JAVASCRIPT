@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
+        <form id="registrationForm">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700">Username <span class="text-red-500">*</span> </label>
+                <input type="text" id="username" name="username"
+                    class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                <span id="usernameError" class="text-red-500 text-sm"></span>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Email <span class="text-red-500">*</span> </label>
+                <input type="text" id="email" name="email"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                <span id="emailError" class="text-red-500 text-sm"></span>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700">Password <span class="text-red-500">*</span> </label>
+                <div class="relative">
+                    <input type="password" id="password" name="password"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <button type="button" id="togglePassword" class="absolute right-3 top-2 text-gray-600">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <span id="passwordError" class="text-red-500 text-sm"></span>
+            </div>
+            <div class="mb-4">
+                <label for="confirmPassword" class="block text-gray-700">Confirm Password <span
+                        class="text-red-500">*</span> </label>
+                <div class="relative">
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                        class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <button type="button" id="toggleConfirmPassword" class="absolute right-3 top-2 text-gray-600">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <span id="confirmPasswordError" class="text-red-500 text-sm"></span>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit"
+                    class="bg-blue-500 text-white w-full px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">Register</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let form = document.getElementById('registrationForm')
+        let username = document.getElementById('username')
+        let email = document.getElementById('email')
+        let password = document.getElementById('password')
+        let confirmPassword = document.getElementById('confirmPassword')
+        let usernameError = document.getElementById('usernameError')
+        let emailError = document.getElementById('emailError')
+        let passwordError = document.getElementById('passwordError')
+        let confirmPasswordError = document.getElementById('confirmPasswordError')
+        let togglePassword = document.getElementById('togglePassword')
+        let toggleConfirmPassword = document.getElementById('toggleConfirmPassword')
+
+        togglePassword.addEventListener('click', function () {
+            // password.getAttribute('type')
+            let currentTypeOfInput = password.getAttribute('type');
+            
+            // password.getAttribute('type') === 'password'
+            if(currentTypeOfInput === 'password'){
+                password.setAttribute('type', "text");
+                this.innerHTML = '<i class="fas fa-eye"></i>';
+            }else{
+                password.setAttribute('type', "password");
+                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
+
+            // const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            // password.setAttribute('type', type);
+            // this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+
+
+
+
+        toggleConfirmPassword.addEventListener('click', function(){
+            let currentTypeOfInput1 = confirmPassword.getAttribute('type');
+            if(currentTypeOfInput1 === 'password'){
+                confirmPassword.setAttribute('type','text');
+                this.innerHTML = '<i class="fas fa-eye"></i>';
+            }else{
+                confirmPassword.setAttribute('type',"password");
+                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
+           
+        });
+
+       
+
+        // toggleConfirmPassword.addEventListener('click', function () {
+        //     const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';            
+        //     confirmPassword.setAttribute('type', type);
+        //     this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        // });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // List of validations implemented:
+            // 1. Username validation:
+            //    - Required field
+            //    - Length between 3 and 20 characters
+            // 2. Email validation:
+            //    - Required field
+            //    - Valid email format (using regex pattern)
+            // 3. Password validation:
+            //    - Required field
+            //    - Length between 8 and 30 characters
+            // 4. Confirm Password validation:
+            //    - Required field
+            //    - Must match the password field
+
+            // Username validation
+            if (username.value === '') {
+                usernameError.textContent = 'Username is required.';
+                isValid = false;
+            } else if (username.value.length < 3 || username.value.length > 20) {
+                usernameError.textContent = 'Username must be between 3 and 20 characters.';
+                isValid = false;
+            } else {
+                usernameError.textContent = '';
+            }
+
+            // Email validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email.value === '') {
+                emailError.textContent = 'Email is required.';
+                isValid = false;
+            } else if (!emailPattern.test(email.value)) {
+                emailError.textContent = 'Invalid email format.';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+                
+            }
+
+            // Password validation
+            if (password.value === '') {
+                passwordError.textContent = 'Password is required.';
+                isValid = false;
+            } else if (password.value.length < 8 || password.value.length > 30) {
+                passwordError.textContent = 'Password must be between 8 and 30 characters long.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // Confirm Password validation
+            if (confirmPassword.value === '') {
+                confirmPasswordError.textContent = 'Confirm Password is required.';
+                isValid = false;
+            } else if (confirmPassword.value !== password.value) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                isValid = false;
+            } else {
+                confirmPasswordError.textContent = '';
+            }
+
+            // If form is valid, submit it
+            if (isValid) {
+                // Create an object with form data
+                const formData = {
+                    username: username.value,
+                    email: email.value,
+                    password: password.value
+                };
+
+                // Convert the object to JSON and log it
+                console.log(JSON.stringify(formData, null, 2));
+
+                // You can remove this alert if you want to keep only the console output
+                alert('Form data logged to console. Check browser developer tools.');
+            }
+        });
+    </script>
+</body>
+
+</html>

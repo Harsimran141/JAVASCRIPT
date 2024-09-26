@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   
+<script>
+    let data = [
+     {id:1 ,discreption :'driver',completed:false},
+     {id:2 ,discreption :'Drver2',completed:false},
+     {id:3 ,discreption :'Owneroperator',completed:false},
+     {id:4 ,discreption :'Owneroperator',completed:false},
+    ];
+     data.map(function(item){
+        console.log(`id ${item.id} discreption ${item.discreption} completed ${item.completed}`)
+     })
+     let newitem = input.value
+     let record = {
+         id:window.crypto.randomUUID(),
+     discreption:newitem,
+     completed:false
+     }
+
+data.push(record)
+console.log(data);
+
+data.filter()
+
+
+
+
+
+
+// function newtask(taskdescreptio){
+//     const newTask ={
+//         id: data.length + 1,
+//         task: taskdescreption,
+//         completed: false
+//     };
+//     data.push(newTask);
+// }
+// newtask('study javascript');
+// console.log(data);
+
+
+</script>
+
+
+
+</body>
+</html>

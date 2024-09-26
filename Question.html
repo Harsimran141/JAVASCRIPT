@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div id="container" class="bg-cyan-700 h-screen w-full  flex  justify-center">
+    <div id="container" class="bg-cyan-500 h-screen w-full  flex  justify-center">
         <div id="submit-container" class="flex flex-col space-y-5 bg-indigo-300 w-96 h-48 px-4 py-4">
             <input id="inputid" type="text" class="w-85 py-2 rounded-md">
 
@@ -107,7 +107,7 @@
 
             currentQuestion.Option.forEach(item => {
                 const button = document.createElement("Button")
-                //  console.log(button); 
+        
                 button.classList.add("list")
                 button.style.display = "flex"
                 button.innerText = item
@@ -120,15 +120,15 @@
 
 
             const listItem = document.querySelectorAll(".list")
-            //  console.log("listitem",listItem)
+            
             listItem.forEach((element) => {
                 element.addEventListener("click", function () {
 
-                    //  console.log(element);
+        
                     if (element.innerText == currentQuestion.Answer) {
 
                         score++
-                        // Questionindex++
+                        
                         localStorage.setItem("score", score)
                         container.classList.remove("bg-cyan-700")
                         container.classList.add("bg-green-900")
@@ -165,7 +165,7 @@
 
         }
 
-        // console.log(MultiOption[2].Question);
+       
 
 
     </script>

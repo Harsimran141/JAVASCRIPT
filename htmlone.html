@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-8">
+    <h1 class="text-4xl font-bold text-center mb-8 text-red-600">To-Do-List</h1>
+    <div class="flex items-center mb-8">
+      <input type="text" id="input" class="bg-gray-200 rounded-l-md py-3 px-4 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="Enter your task">
+      <button id="addbtn" class="bg-blue-600 text-white rounded-r-md py-3 px-6 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Add</button>
+       <button id="update" class="hidden">Update</button>
+    </div>
+    <ul id="userlist" class="space-y-4"></ul>
+  </div>
+
+  <script>
+    let setinput = [];
+    const input = document.getElementById("input");
+    const btn = document.getElementById("addbtn");
+    const userlist = document.getElementById("userlist");
+    const Update = document.getElementById("update");
+
+    btn.addEventListener('click', () => {
+      let record = input.value.trim();
+      if (record) {
+        const object = {
+          name: record,
+          id: window.crypto.randomUUID()
+        }
+        setinput.push(object);
+        localStorage.setItem('name', JSON.stringify(setinput));
+        input.value = '';
+        displaydata();
+      }
+    });
+
+    function displaydata() {
+      userlist.innerHTML = '';
+      setinput.forEach((element) => {
+        const li = document.createElement('li');
+        li.className = "bg-gray-200 rounded-md flex justify-between items-center px-4 py-3";
+        li.innerHTML = `<span class="text-lg font-medium">${element.name}</span>`;
+        const delBtn = document.createElement('button');
+
+        const Edit = document.createElement('button'); 
+        Edit.textContent = 'Edit';
+
+        Edit.className = "bg-green-800 text-white rounded-md px-4 py-2 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600";
+        delBtn.className = "bg-red-800 text-white rounded-md px-4 py-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600";
+        delBtn.setAttribute("data-id", element.id);
+        delBtn.textContent = "Delete";
+        delBtn.addEventListener('click', () => {
+          setinput = setinput.filter((item) => item.id !== element.id);
+          displaydata();
+        });
+        li.appendChild(delBtn);
+        li.appendChild(Edit);
+        userlist.appendChild(li);
+        // Edit.addEventListener('click'function)
+     });
+      
+
+      
+
+
+    }
+  </script>
+</body>
+</html>

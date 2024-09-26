@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="mt-10 ml-80  w-[896px] px-10 bg-blue-800 h-96 rounded-md">
+        <div> <input id="input" type="text" class="w-72 mt-10 rounded-md" placeholder=" Enter Your Task">
+            <button id="btn" class="bg-green-600 w-20 text-2xl text-white rounded-md">Add</button>
+            <div>
+                <ul id="Ulist">
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        setinput = [];
+        const input = document.getElementById('input');
+        const btn = document.getElementById('btn');
+        const userlist = document.getElementById('Ulist');
+        btn.addEventListener('click', function () {
+            let data = input.value.trim()
+            let object = {
+                name: data,
+                id: window.crypto.randomUUID(),
+            }
+            setinput.push(object)
+
+            // localStorage.setItem('parameter', JSON.stringify(setinput));
+            input.value = '';
+            displaydata()
+        })
+        function displaydata() {
+            userlist.innerHTML = '';
+            setinput.map((element) => {
+                const list = document.createElement('li');
+                list.className = "text-2xl text-white  flex w-full";
+                list.innerHTML = element.name
+                userlist.appendChild(list);
+                console.log(list);
+                const DELbtn = document.createElement('button');
+                DELbtn.className = "delete text-2xl font-bold text-red-800 flex w-full";
+
+                DELbtn.innerHTML = "DEL";
+                list.appendChild(DELbtn)
+                // DELbtn.setAttribute('record', element.id)
+                DELbtn.addEventListener('click', function () {
+                    // const newdata = DELbtn.getAttribute('record')
+                    // setinput = setinput.filter((item) => item.id !== element.id)
+                    setinput = setinput.filter(function (items) {
+                        if (items.id !== element.id) {
+                            return (items)
+                        }
+
+                    })
+                    displaydata()
+
+
+                })
+                const Edit = document.createElement('button');
+                Edit.className = "text-green-600 font-bold bg-white";
+                Edit.innerHTML = 'Edit'
+                Edit.setAttribute('recd', element.id)
+                list.appendChild(Edit);
+                Edit.addEventListener('click', function () {
+                    const newedit = Edit.getAttribute('recd');
+                    console.log("123", newedit);
+
+                    let nsetinput = setinput.find(function (elm) {
+                        if (elm.id === newedit) {
+                            return (elm)
+                        }
+                    })
+                    input.value = nsetinput.name;
+                    displaydata();
+                })
+            })
+        }
+        displaydata();
+    </script>
+</body>
+</html>
