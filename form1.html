@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-cyan-100">
+    <form action="" class=" w-96 m-auto px-4  space-y-4 py-7 shadow-lg">
+      <div>
+        <label for="" class="text-xl font-">First Name :</label>
+        <br>
+        <input type="text" name="" id="name" class="border" />
+      </div>
+      <div>
+        <label for=""  class="text-xl font-" >Email:</label><br>
+        <input type="email" name="" id="email">
+      </div>
+      <div>
+        <label for="" class="text-xl font-" >Gender</label><br>
+        <input type="radio" name="gender" value="male" id="">
+        <span>Male</span><br>
+        <input type="radio" name="gender" value="female" id="">
+        <span>Female</span>
+      </div>
+      <div>
+        <label for=""  class="text-xl font-">Language</label><br>
+        <input type="checkbox" name="language" value="Punjabi" id="">
+        <span>Punjabi</span><br>
+        <input type="checkbox" name="language" value="English" id="">
+        <span>English</span><br>
+        <input type="checkbox" name="language" value="Hindi" id="">
+        <span>Hindi</span>
+      </div>
+      <button id="btn" class="bg-blue-600 rounded-2xl  text-white px-5 py-2">Submit</button>
+    </form>
+    <script>
+        const fistName = document.getElementById("name")
+        const userEmail = document.getElementById("email")
+        const submitBtn = document.getElementById("btn")
+        const radioType = document.getElementsByName("gender")
+        console.log(radioType);
+        const checked = document.getElementsByName("language")
+        console.log(checked);
+        
+        
+
+        const submitData =(event)=>{
+            event.preventDefault();
+            let firstNameValue = fistName.value
+            let emailValue = userEmail.value
+            const genders = document.getElementsByName("gender")
+
+            let selectedGender; 
+
+            for(const gender of genders){
+                if(gender.checked){
+                    selectedGender= gender.value
+                    break;
+                }
+            }
+            let selectedLanguage = [];
+            for(const language of checked){
+                if(language.checked){
+                    selectedLanguage.push(language.value)
+                }
+            }
+            console.log(selectedLanguage);
+            
+            console.log({
+                "firstName": firstNameValue,
+                "Email": emailValue,
+                "Gender": selectedGender,
+                "language": selectedLanguage
+            })
+        }
+    
+        submitBtn.addEventListener("click", submitData)
+    </script>
+  </body>
+</html>

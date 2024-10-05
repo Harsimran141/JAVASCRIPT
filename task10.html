@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class=" w-[680px] h-[430px] m-auto mt-10 rounded-md bg-fuchsia-950">
+        <div class="ml-[300px] text-2xl text-white">
+            <h1>List of Items</h1>
+        </div>
+
+        <ul class="text-white text-2xl text-center mt-10">
+            <li class="names">Harsimran pal singh</li>
+            <li class="names">Harsimran pal singh</li>
+            <li class="names">Ramandeep kaur</li>
+            <li class="names">Jobanpreet kaur</li>
+            <li class="names">Mandeep kaur</li>
+            <li class="names">Jarmanjit singh</li>
+            <li class="names">Kartarpreet singh</li>
+        </ul>
+    </div>
+    <script>
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        console.log(randomNum);
+        const color = ['text-red-800', 'text-pink-400', 'text-blue-700', 'text-orange-500', 'text-yellow-800', 'text-indigo-800']
+        console.log(color);
+        
+        const name = document.querySelectorAll('.names')
+        name.forEach(items => {
+            items.addEventListener('click', function () {
+                let newcolor = randomNum(0, color.length)
+                    items.style.color = 'yellow';
+                console.log(items.innerText)
+            })
+        });
+    </script>
+
+
+</body>
+
+</html>

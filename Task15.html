@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>color chnage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="bg-slate-100 w-96 m-auto p-2">
+    <select name="" id="color" class="w-80">
+      <option value="100">100</option>
+      <option value="200">200</option>
+      <option value="300">300</option>
+      <option value="400">400</option>
+      <option value="500">500</option>
+      <option value="600">600</option>
+      <option value="700">700</option>
+      <option value="800">800</option>
+      <option value="900">900</option>
+      <option value="950">950</option>
+    </select>
+
+
+    <ul class="py-3 space-y-4 font-bold text-xl">
+      <li class="list-items py-4 border-b shadow-sm">Harsimran pal singh</li>
+      <li class="list-items py-4 border-b shadow-sm">
+        JavaScript is an easy programming language
+      </li>
+      <li class="list-items py-4 border-b shadow-sm">
+        React is a very famous library
+      </li>
+      <li class="list-items py-4 border-b shadow-sm">Today is a great day</li>
+      <li class="list-items py-4 border-b shadow-sm">
+        React is very easy to learn
+      </li>
+    </ul>
+
+  </div>
+  <script>
+  
+    const selectedColor = document.getElementById("color");
+    const listItem = document.querySelectorAll(".list-items");
+    const textColor = [
+      "text-red-800",
+      "text-green-500",
+      "text-blue-900",
+      "text-pink-500",
+      "text-yellow-500",
+      "text-cyan-500",
+      "text-gray-500",
+    ];
+    const bgColor = [
+      "bg-red",
+      "bg-green",
+      "bg-yellow",
+      "bg-blue",
+      "bg-cyan",
+      "bg-pink",
+    ];
+
+    function randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    listItem.forEach((item) => {
+      item.addEventListener("click", function () {
+        let colorOptions = selectedColor.value;
+        let textColors = randomNum(0, textColor.length);
+        let chngetextColor = textColor[textColors];
+        let backgroundColor = randomNum(0, bgColor.length);
+        let ChangeBgColor = bgColor[backgroundColor] + "-" + colorOptions;
+        let setTitle = `text-color: ${chngetextColor}  background-color: ${ChangeBgColor} `;
+        item.setAttribute("title", setTitle);
+        textColor.forEach((elm) => item.classList.remove(elm));
+        bgColor.forEach((elm) => item.classList.remove(ChangeBgColor));
+        item.classList.add(ChangeBgColor);
+        item.classList.add(chngetextColor);
+      });
+    });
+  
+  </script>
+</body>
+
+</html>

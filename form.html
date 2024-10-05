@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <form id="form">
+        <label for="" id="name">First Name</label>
+        <input class="border" type="text" id="name1"><br>
+        <label for="">Email</label><br>
+        <input type="email" id="email" class="border">
+        <div>
+            <label for="">Gender</label>
+            <input type="radio" value="Male" name="Gender">
+            <span>Male</span><br>
+            <input type="radio" value="Female" name="Gender">
+            <span>Female</span>
+
+        </div>
+        <div>
+            <label for="">Language</label><br>
+            <input type="checkbox" name="language" value="English"><span>English</span><br>
+            <input type="checkbox" name="language" value="Punjabi"><span>Punjabi</span><br>
+            <input type="checkbox" name="language" value="Hindi"><span>Hindi</span><br>
+        
+        </div>
+        <select name="" id="select">
+            <option value=""></option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const form = document.getElementById('form');
+        const name = document.getElementById('name');
+        const name1 = document.getElementById('name1');
+        const email = document.getElementById('email');
+
+        const Gender = document.getElementsByName('Gender')
+        // console.log(Gender);
+        const selectedLanguage = document.getElementsByName('language')
+        // console.log(selectedLanguage);
+
+        const select = document.getElementById('select');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            let username = name1.value;
+            let selectedGender;
+            let useremail = email.value; 
+
+            // Gender.forEach((item)=>(selectedGender = item.value))
+
+            // console.log(username);
+
+            for (const ABC of Gender) {
+                if (ABC.checked) {
+                    selectedGender = ABC.value
+                    break;
+                }
+            }
+            // console.log(selectedGender);
+            let selectedLanguages = [];
+            for (const languages of selectedLanguage) {
+                if (languages.checked) {
+                    selectedLanguages.push(languages.value)
+
+                    // console.log(selectedLanguages);
+                }
+
+            }
+
+            console.log({
+                "name":username,
+                "Gender":selectedGender,
+                "Languages":selectedLanguages,
+                "email":useremail,
+
+            })
+        })
+
+
+
+    </script>
+</body>
+
+</html>

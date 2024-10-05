@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+
+<body>
+    <div class=" w-[496px] text-center rounded-md bg-slate-300 text-2xl font-bold m-auto">
+        
+        <h1 class="text-center">
+            List of Names</h1>
+        <div>
+        <ul>
+                <li class="listitem">Harsimran pal singh</li>
+                <li class="listitem">Jaskaran singh</li>
+                <li class="listitem">Rupinder kaur</li>
+                <li class="listitem">Mandeep singh</li>
+                <li class="listitem">Amritpal singh</li>
+            </ul>
+        </div>
+        <script>
+            function randomNum(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min; 
+            }
+            const color = ["text-red-600", "text-blue-400", 
+            "text-yellow-800", "text-pink-300",
+            "text-green-600"];
+            const bgcolor = ["bg-red-800",
+            "bg-green-800","bg-red-900",
+            "bg-blue-600","bg-yellow-700",
+            "bg-white","bg-pink-600"];
+            
+            
+            const selected = document.querySelectorAll('.listitem');
+        
+            selected.forEach((item) => {
+                console.log(selected);
+
+                item.addEventListener('click', function () {
+                    // console.log(item);
+                    let rnumber = randomNum(0, color.length)
+                    let newbg = randomNum(0,bgcolor.length) 
+                    let backgroundColor = bgcolor[newbg]
+                   
+                    
+                 
+                   let randomcolor = color[rnumber]
+                    // item.style.color = "red";
+                    // item.style.backgroundColor = "black";
+                    item.classList.add(randomcolor);
+                    item.classList.add(backgroundColor);
+                    
+                })
+            })
+        </script>
+</body>
+
+</html>
