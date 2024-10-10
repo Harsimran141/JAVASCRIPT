@@ -1,82 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-cyan-100">
-    <form action="" class=" w-96 m-auto px-4  space-y-4 py-7 shadow-lg">
-      <div>
-        <label for="" class="text-xl font-">First Name :</label>
-        <br>
-        <input type="text" name="" id="name" class="border" />
-      </div>
-      <div>
-        <label for=""  class="text-xl font-" >Email:</label><br>
-        <input type="email" name="" id="email">
-      </div>
-      <div>
-        <label for="" class="text-xl font-" >Gender</label><br>
-        <input type="radio" name="gender" value="male" id="">
-        <span>Male</span><br>
-        <input type="radio" name="gender" value="female" id="">
-        <span>Female</span>
-      </div>
-      <div>
-        <label for=""  class="text-xl font-">Language</label><br>
-        <input type="checkbox" name="language" value="Punjabi" id="">
-        <span>Punjabi</span><br>
-        <input type="checkbox" name="language" value="English" id="">
-        <span>English</span><br>
-        <input type="checkbox" name="language" value="Hindi" id="">
-        <span>Hindi</span>
-      </div>
-      <button id="btn" class="bg-blue-600 rounded-2xl  text-white px-5 py-2">Submit</button>
-    </form>
-    <script>
-        const fistName = document.getElementById("name")
-        const userEmail = document.getElementById("email")
-        const submitBtn = document.getElementById("btn")
-        const radioType = document.getElementsByName("gender")
-        console.log(radioType);
-        const checked = document.getElementsByName("language")
-        console.log(checked);
-        
-        
 
-        const submitData =(event)=>{
-            event.preventDefault();
-            let firstNameValue = fistName.value
-            let emailValue = userEmail.value
-            const genders = document.getElementsByName("gender")
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-            let selectedGender; 
+<body class="bg-cyan-100">
+  <form action="" class=" w-96 m-auto px-4  space-y-4 py-7 shadow-lg">
+    <div>
+      <label for="" class="text-xl font-">First Name :</label>
+      <br>
+      <input type="date" min="2005-01-01" max="2015-01-01">
+      <input type="text" name="" id="name" class="border" />
+    </div>
+    <div>
+      <label for="" class="text-xl font-">Email:</label><br>
+      <input type="email" name="" id="email">
+    </div>
+    <div>
+      <label for="" class="text-xl font-">Gender</label><br>
+      <input type="radio" name="gender" value="male" id="">
+      <span>Male</span><br>
+      <input type="radio" name="gender" value="female" id="">
+      <span>Female</span>
+    </div>
+    <div>
+      <label for="" class="text-xl font-10">Language</label><br>
+      <input type="checkbox" name="language" value="Punjabi" id="punjabilanguage">
+      <span>Punjabi</span><br>
+      <input type="checkbox" name="language" value="English" id="">
+      <span>English</span><br>
+      <input type="checkbox" name="language" value="Hindi" id="">
+      <span>Hindi</span>
+    </div>
+    <div>
+      <label for="" class="text-xl font-12">Countries</label><br>
+      <input type="checkbox" name="Country" value="India"><span>India</span>
+      <input type="checkbox" name="Country" value="Usa"><span>Usa</span>
+      <input type="checkbox" name="Country" value="Canada"><span>Canada</span>
+      <input type="checkbox" name="Country" value="Pakstan"><span>Pakstan</span>
+    </div>
+    <button id="btn" class="bg-blue-600 rounded-2xl  text-white px-5 py-2">Submit</button>
+  </form>
+  <script>
+    const firstName = document.getElementById("name")
+    const Email = document.getElementById("email")
+    const submitBtn = document.getElementById("btn")
+    const punjabi = document.getElementById('punjabilanguage');
+    const County = document.getElementsByName('Country');
+    console.log(County);
 
-            for(const gender of genders){
-                if(gender.checked){
-                    selectedGender= gender.value
-                    break;
-                }
-            }
-            let selectedLanguage = [];
-            for(const language of checked){
-                if(language.checked){
-                    selectedLanguage.push(language.value)
-                }
-            }
-            console.log(selectedLanguage);
-            
-            console.log({
-                "firstName": firstNameValue,
-                "Email": emailValue,
-                "Gender": selectedGender,
-                "language": selectedLanguage
-            })
+
+    punjabi.addEventListener('change', function () {
+      console.log(punjabi.checked);
+      console.log(punjabi.value);
+
+
+    })
+    const checked = document.getElementsByName("language")
+    console.log(checked);
+    const submitData = (event) => {
+      event.preventDefault();
+      let firstNameValue = firstName.value;
+      let useremail = Email.value
+      console.log(firstNameValue);
+      console.log(useremail);
+      const genders = document.getElementsByName('gender');
+      let selectedGender;
+      for (const gender of genders) {
+        if (gender.checked) {
         }
-    
-        submitBtn.addEventListener("click", submitData)
-    </script>
-  </body>
+        selectedGender = gender.value
+      }
+      checked[0].checked = true
+      let selectedLanguage = [];
+      for (const language of checked) {
+        if (language.checked) {
+          selectedLanguage.push(language.value)
+          console.log(selectedLanguage);
+        }
+      }
+      let newcounty = [];
+      // console.log(County);
+      
+      for (const Countries of County) {
+        // console.log(Countries);
+        
+        if (Countries.checked) {
+          newcounty.push(Countries.value)
+          console.log(newcounty);
+        }
+      }
+    }
+
+    submitBtn.addEventListener("click", submitData)
+
+
+
+
+    // const genders = document.getElementsByName("gender")
+
+    // let selectedGender;
+    // console.log(selectedGender);
+    // for(const gender of genders){
+    //       if(gender.checked){
+    //           selectedGender= gender.value
+    //           break;
+    //       }
+    //   }
+    //   let selectedLanguage = [];
+    //   // console.log(checked);
+    // for(const language of checked){
+    //   if(language.checked){
+    //   selectedLanguage.push(language.value)
+    //       }
+    //   }
+    //   // console.log(selectedLanguage);
+    //   console.log({
+    //       "firstName": firstNameValue,
+    //       "Email": useremail,
+    //       "Gender": selectedGender,
+    //       "language": selectedLanguage
+    //   })
+
+  </script>
+</body>
+
 </html>
