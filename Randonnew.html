@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<div class=" w-[496px] h-[596px] m-auto mt-6 rounded-md text-2xl bg-red-800  ">
+    <h1 class="text-4xl text-white text-center">Random Colors</h1>
+    <div>
+        <input type="checkbox" name="Color" value="bg-red">
+        <label for="bg-red-100" class="text-white">bg-red</label>
+    </div>
+    <div>
+        <input type="checkbox" name="color" value="bg-blue">
+        <label for="bg-red-100" class="text-white">bg-blue</label>
+    </div>
+    <div>
+        <input type="checkbox" name="color" value="bg-green">
+        <label for="bg-red-100" class="text-white">bg-green</label>
+    </div>
+    <div>
+        <input type="checkbox" name="color" value="bg-orange">
+        <label for="bg-red-100" class="text-white">bg-orange</label>
+    </div>
+    <div>
+        <input type="checkbox" name="color" value="bg-pink">
+        <label for="bg-red-100" class="text-white">bg-pink</label>
+    </div>
+    <div>
+        <input type="checkbox" name="color" value="bg-amber">
+        <label for="bg-red-100" class="text-white">bg-amber</label>
+    </div>
+    <select name="" id="color" class="w-30 ml-6 rounded-md mt-6">
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="300">300</option>
+        <option value="400">400</option>
+        <option value="500">500</option>
+    </select>
+    <ul>
+        <li class="list">Jaskaran singh</li>
+        <li class="list">Harsimranpal</li>
+        <li class="list">Rupinder kaur</li>
+        <li class="list">Amrit singh</li>
+        <li class="list">Arshdeep kaur</li>
+        <li class="list">Mandeep singh</li>
+        <li class="list">Ravinder singh</li>
+    </ul>
+<script>
+    function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        const textcolor = [
+            'text-slate-50', 'text-slate-100', 'text-slate-200', 'text-slate-300', 'text-slate-400', 'text-slate-500', 'text-slate-600', 'text-slate-700', 'text-slate-800', 'text-slate-900',
+            'text-gray-50', 'text-gray-100', 'text-gray-200', 'text-gray-300', 'text-gray-400',
+        ];
+    const shade = document.getElementById('color');
+    console.log(shade);
+    
+    const color = document.getElementsByName('color');
+   
+    
+    const listed = document.querySelectorAll(".list");
+    listed.forEach((item) => {
+        // console.log(item);
+        item.addEventListener('click',function(){
+        let selectedColor = shade.value;
+        // console.log(selectedColor);
+        let newcolor = randomNum(0, textcolor.length);
+        console.log(newcolor);
+        newshade = [];
+        // console.log(newshade);
+        for(const item of color) {
+            console.log();
+            
+            if(item.checked){
+                newshade.push(item.value)
+                // console.log(newshade);
+                }
+            }
+         })
+        
+    })
+
+
+</script>
+
+</div>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-60 bg-blue-400 m-auto mt-6 rounded-md">
+        <div>
+            <input type="checkbox" name="color" value="bg-red">
+            <label for="">bg-red</label><br>
+            <input type="checkbox" name="color" value="bg-blue">
+            <label for="">bg-blue</label><br>
+            <input type="checkbox" name="color" value="bg-green">
+            <label for="">bg-green</label><br>
+            <input type="checkbox" name="color" value="bg-pink">
+            <label for="">bg-pink</label><br>
+            <input type="checkbox" name="color" value="bg-yellow">
+            <label for="">bg-yellow</label><br>
+            <input type="checkbox" name="color" value="bg-cyan">
+            <label for="">bg-cyan</label><br>
+            <input type="checkbox" name="color" value="bg-gray">
+            <label for="">bg-gray</label>
+        </div>
+        <select name="" id="option" class="w-30 ml-6 rounded-md mt-6">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+        </select>
+        <ul>
+            <li class="list">Jaskaran singh</li>
+            <li class="list">Harsimranpal</li>
+            <li class="list">Rupinder kaur</li>
+        </ul>
+    </div>
+    <script>
+        const setcolor = document.getElementsByName('color');
+        const setoption = document.getElementById('option');
+        const setlist = document.querySelectorAll('.list')
+        // console.log(setcolor);
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        setlist.forEach((item) => {
+            item.addEventListener('click', function () {
+                let bgcolor = [];
+               for (const element of setcolor) {
+                if(element.checked){
+                    bgcolor.push(element.value)
+                }
+               }
+
+                // setcolor.forEach((element) => {
+                //     if (element.checked) {
+                //         bgcolor.push(element.value)
+                //     }
+                // })
+                let newcolor = randomNum(0, bgcolor.length)
+                let selectedcolor = bgcolor[newcolor]
+                let newoption = setoption.value
+    
+                let setclass = selectedcolor+'-'+newoption
+                item.classList.add(setclass)
+                 })
+    })
+
+    </script>
+</body>
+
+</html>

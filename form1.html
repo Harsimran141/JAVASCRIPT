@@ -39,7 +39,7 @@
     <div>
       <label for="" class="text-xl font-12">Countries</label><br>
       <input type="checkbox" name="Country" value="India"><span>India</span>
-      <input type="checkbox" name="Country" value="Usa"><span>Usa</span>
+      <input type="checkbox" name="Country" value="Usa"><span>USA</span>
       <input type="checkbox" name="Country" value="Canada"><span>Canada</span>
       <input type="checkbox" name="Country" value="Pakstan"><span>Pakstan</span>
     </div>
@@ -51,9 +51,7 @@
     const submitBtn = document.getElementById("btn")
     const punjabi = document.getElementById('punjabilanguage');
     const County = document.getElementsByName('Country');
-    console.log(County);
-
-
+    
     punjabi.addEventListener('change', function () {
       console.log(punjabi.checked);
       console.log(punjabi.value);
@@ -84,10 +82,10 @@
         }
       }
       let newcounty = [];
-      // console.log(County);
+
       
       for (const Countries of County) {
-        // console.log(Countries);
+        
         
         if (Countries.checked) {
           newcounty.push(Countries.value)

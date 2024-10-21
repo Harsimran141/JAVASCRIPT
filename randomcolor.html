@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+    <div class=" w-[496px] h-[496px] m-auto  text-2xl bg-red-200 ">
+        <h1>Colors</h1>
+        <div>
+            <input name="color" id="bg-red-100" type="checkbox" value="bg-red">
+            <label for="bg-red-100">bg-red</label>
+        </div>
+        <div>
+            <input name="color" id="bg-blue-100" type="checkbox" value="bg-blue">
+            <label for="bg-blue-100">bg-blue</label>
+        </div>
+        <div>
+            <input name="color" id="bg-amber-300" type="checkbox" value="bg-amber">
+            <label for="bg-amber-300">bg-amber</label>
+        </div>
+        <div>
+            <input name="color" id="bg-blue-400" type="checkbox" value="bg-blue">
+            <label for="bg-blue-400">bg-blue</label>
+        </div>
+        <select name="" id="color" class="w-30 ml-6 rounded-md mt-6">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+        </select>
+        <ul>
+            <li class="list">Harsimran pal singh</li>
+            <li class="list">Jaskaran singh</li>
+            <li class="list">Rupinder kaur</li>
+            <li class="list">Jatinder singh</li>
+            <li class="list">jarman singh</li>
+            <li class="list">Kartar singh</li>
+        </ul>
+    </div>
+    <script>
+        function randomNum(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        const textcolor = [
+            'text-slate-50', 'text-slate-100', 'text-slate-200', 'text-slate-300', 'text-slate-400', 'text-slate-500', 'text-slate-600', 'text-slate-700', 'text-slate-800', 'text-slate-900',
+            'text-gray-50', 'text-gray-100', 'text-gray-200', 'text-gray-300', 'text-gray-400',
+        ];
+
+
+   
+
+        const selectedColor = document.getElementById('color');
+        const listed = document.querySelectorAll('.list');
+        const name = document.getElementsByName('color');
+        listed.forEach((item) => {
+            console.log(item);
+            
+        item.addEventListener('click', function () {
+                let colorOptions = selectedColor.value
+                let newcolor = randomNum(0, textcolor.length)
+                
+                const names = [];
+                
+                for (const newname of name) {
+                    if (newname.checked) {
+                        names.push(newname.value)
+                    }
+                }
+                let bcolor = randomNum(0, names.length)
+                console.log(names);
+                
+                let changecolor = textcolor[newcolor]
+                item.classList.add(changecolor)
+                let newchange = names[bcolor]
+                item.classList.add(newchange +"-"+ colorOptions)
+
+            })
+        })
+    </script>
+</body>
+
+</html>
