@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="">
+        <h1>Weather App</h1>
+        <div>
+            <input type="text" id="input">
+            <button id="search">Search</button>
+        </div>
+        <div id="container"></div>
+
+    </div>
+    <script>
+        const input = document.getElementById('input')
+        const search = document.getElementById('search')
+        const container = document.getElementById('container')
+        const fetchapi = async () => {
+            let inputs = input.value
+            const apiKey = "09e7a1b8b2844ba990b110125243108";
+            console.log(apiKey);
+            
+            try {
+                const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${inputs}`)
+                let data = await response.json()
+                // console.log(data);
+
+                const Weatherdetail = ` <h2 class="text-red-500 font-bold text-3xl ">${data.location.name}</h2>
+            <p class="text-gray-100 text-3xl font-bold">${data.current.condition.text}</p>
+            <p class="text-cyan-800 text-2xl font-bold">${data.current.temp_c} °C</p>`
+        
+                container.innerHTML = Weatherdetail
+
+            }
+            catch (e) {
+                console.log(e);
+
+            }
+        }
+        search.addEventListener("click", function () {
+            fetchapi();
+        
+        });
+    
+    </script>
+</body>
+
+</html>

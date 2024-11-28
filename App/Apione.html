@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div>
+        <h1 class="text-2xl text-center mt-10 font-bold text-red-800">Api Data</h1>
+        <div>
+            <button id="btn" class="bg-green-700 font-bold text-white p-2 rounded-md ml-64 mt-8 shadow-8">Click
+                Me</button>
+        </div>
+        <p id="text">
+
+        </p>
+    </div>
+    <script>
+        const button = document.getElementById("btn");
+        const display = document.getElementById("text");
+        button.addEventListener("click", () => {
+            let newapi = fetch("https://api.freeapi.app/api/v1/public/youtube/videos");
+            newapi.then((response) => {
+                return response.json();
+            }).then((Apidata) => {
+                console.log("hello");
+
+                console.log(Apidata);
+                let record = Apidata.data.data
+                // console.log(record);
+                
+                let htmlcontent = `<ul>`
+                record.forEach(items => {
+                    htmlcontent += `<li class="m-4 p-4 border-1 border-slate-400 bg-slate-100 shadow-md rounded-md">
+                <h1 class="text-2xl font-bold text-blue-800">${items.items.snippet.channelTitle}</h1>
+                <p class="bg-green-300 text-xl ">${items.items.snippet.description}</p>
+                <p class="bg-orange-300 text-xl mt-2">${items.items.snippet.title}</p>
+               <img src="${items.items.snippet.thumbnails.default.url}"/>
+               <p>${}</p>
+                </li>`
+                });
+                htmlcontent +=`</ul>`;
+                display.innerHTML = htmlcontent
+            }).catch((error) => {
+                console.log(error);
+
+            })
+        })
+
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div>
+        <button class="bg-green-500 m-auto ml-64 text-white  mt-10 p-2 rounded-md" id="btn">Click Me</button>
+        <div id="record">
+ </div>
+</div>
+<script>
+        const button = document.getElementById("btn");
+        const display = document.getElementById("record");
+        button.addEventListener('click', () => {
+        let newapi = fetch("https://api.freeapi.app/api/v1/public/books")
+            newapi.then((data) => {
+                // console.log(data);
+                return data.json();
+
+            }).then((data) => {
+
+                console.log(data);
+                console.log("hello")
+                let records = data.data.data
+               let htmlcontent = `<ul>`
+                records.forEach(item => {
+                    // console.log(item.volumeInfo.title);
+                    htmlcontent += `<li class="m-4 p-4 border-1 border-slate-400 bg-slate-100 shadow-md rounded-md">
+                        <h1 class="text-2xl font-bold">${item.volumeInfo.title}</h1>
+                        <p class="font-semibold mt-2 ">${item.volumeInfo.subtitle}</p>
+                        <p class="font-italic mt-2">${item.volumeInfo.description}</p>
+                        <p class="font-italic font-3xl mt-2">${item.accessInfo.contentVersion}</p>
+                </li>`;
+                });
+                htmlcontent += `</ul>`;
+                console.log(htmlcontent);
+
+                display.innerHTML = htmlcontent
+
+            }).catch((error) => {
+                console.log(error);
+
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>

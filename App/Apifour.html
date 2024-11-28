@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div id="para">
+
+    </div>
+
+    <script>
+        const display = document.getElementById("para");
+        let apidata = fetch("https://api.freeapi.app/api/v1/public/stocks")
+        apidata.then((Response) => {
+            return Response.json();
+        }).then((apidata) => {
+            console.log(apidata);
+            let record = apidata.data.data
+            let htmlcontent = `<div>`
+            record.forEach(item => {
+                htmlcontent += ` <div class="bg-white mt-4 rounded-xl shadow-lg overflow-hidden max-w-md w-full">
+        <div class="bg-sky-600 text-white p-4">
+            <h2 class="text-2xl font-bold">${item.Name}</h2>
+            <p class="text-sm">Symbol ${item.Symbol}</p>
+        </div>
+        <div class="p-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-600 text-sm">Current Price</p>
+                    <p class="font-semibold text-lg">${item.CurrentPrice}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">Market Cap</p>
+                    <p class="font-semibold text-lg">${item.MarketCap}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">52 Week High/Low</p>
+                    <p class="font-semibold text-lg">${item.HighLow}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">Stock P/E</p>
+                    <p class="font-semibold text-lg">${item.StockPE}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">Book Value</p>
+                    <p class="font-semibold text-lg">${item.BookValue}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">Dividend Yield</p>
+                    <p class="font-semibold text-lg">${item.DividendYield}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">ROCE</p>
+                    <p class="font-semibold text-lg">${item.ROCE}</p>
+                </div>
+                <div>
+                    <p class="text-gray-600 text-sm">ROE</p>
+                    <p class="font-semibold text-lg">${item.ROE}</p>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Face Value</p>
+                        <p class="font-semibold text-lg">${item.FaceValue}</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 text-sm">ISIN</p>
+                        <p class="font-semibold text-lg">${item.ISIN}</p>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <p class="text-gray-600 text-sm">Listing Date</p>
+                    <p class="font-semibold text-lg">${item.ListingDate}</p>
+                </div>
+            </div>
+        </div>
+    </div>`
+            });
+            htmlcontent += `</div>`;
+            display.innerHTML = htmlcontent
+        }).catch((error) => {
+            console.log(error);
+
+        })
+
+
+    </script>
+</body>
+
+</html>

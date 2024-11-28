@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Call Using Async Await</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <h1>API Call Using Async Await</h1>
+    <button id="fetch-data" class="bg-blue-500 text-white px-4 py-2 rounded-md">
+        Load Cat
+    </button>
+
+    <div id="cat-image" class="w-full h-full"></div>
+
+    <script>
+        const btn = document.getElementById("fetch-data");
+        btn.addEventListener("click", fetchCat);
+
+        //   function fetchCat() {
+        //     let api = fetch("https://api.thecatapi.com/v1/images/search");
+        //     api
+        //       .then((Response) => {
+        //         console.log(Response);
+        //         return Response.json();
+        //       })
+        //       .then((data) => {
+        //         console.log(data);
+        //         const catImage = document.getElementById("cat-image");
+        //         catImage.innerHTML = `<img src="${data[0].url}" alt="cat" />`;
+        //       })
+        //       .catch((err) => console.log(err));
+        //   }
+
+        async function fetchCat() {
+            try {
+                let apiResponse = await fetch("https://api.thecatapi.com/v1/images/search");
+                let data = await apiResponse.json();
+                console.log(data);
+                
+                const catImage = document.getElementById("cat-image");
+                catImage.innerHTML = `<img src="${data[0].url}"/>`;
+            } catch (error) {
+                console.log("Error in fetching data");
+                console.log(error);
+            }
+        }
+    </script>
+</body>
+
+</html>

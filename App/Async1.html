@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <h1>API Call Using Async Await</h1>
+    <button id="fetch-data" class="bg-blue-500 text-white px-4 py-2 rounded-md">
+        Load Cat
+    </button>
+
+    <div id="cat-image" class="w-full h-full"></div>
+
+    <script>
+        const btn = document.getElementById("fetch-data");
+        btn.addEventListener("click", fetchCat);
+        async function fetchCat() {
+            try{
+               let apiResponse = await fetch("https://api.thecatapi.com/v1/images/search");
+               let data = await apiResponse.json();
+               const catImage = document.getElementById("cat-image");
+               catImage.innerHTML = `<img src="${data[0].url}"/>`; 
+            }catch (error){
+                console.log("error in fetching data");
+                console.log(error);
+                }
+        }
+    </script>
+</body>
+</html>

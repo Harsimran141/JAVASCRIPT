@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// function fetchdata(){
+//     let apipromise = new Promise((resolve,reject) => {
+//         setTimeout(() => {
+//             if(true){
+//                 resolve("Data fetched");
+//               }else{
+//                 reject("Error fetching data");
+//               }
+//         },4000)
+//         });
+//         return apipromise;
+// }
+// fetchdata()
+// .then((data) => console.log(data))
+// .catch((error)=>console.log(error));
+
+function voter(age){
+    let apivoter = new Promise((resolve,reject) => {
+        if(age >= 18){
+            resolve("You are eligible for vote");
+        }else{
+            reject("you are not eligble for vote");
+        }
+    })
+    return apivoter;
+}
+voter(20)
+.then((data) => console.log(data))
+.catch((error)  => console.log (error));
+
+</script>
+</body>
+</html>
