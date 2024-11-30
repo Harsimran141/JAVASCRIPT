@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <h1>API Call Using Async Await</h1>
+    <button id="fetch-data" class="bg-green-800 text-white px-4 text-xl py-2 rounded-md">Click Me
+    
+    </button>
+      <div id="display"></div>
+    <script>
+        const image = document.getElementById("display")
+        const btn = document.getElementById("fetch-data");
+        btn.addEventListener("click",()=>{
+           fetchvideo() 
+        
+        });
+        async function fetchvideo() {
+            try {
+                let apiResponse = await fetch("https://api.freeapi.app/api/v1/public/youtube/videos");
+               let data = await apiResponse.json();
+               console.log(data);
+               console.log("hello");
+               
+               let record = (data.data.data);
+               let htmlcontent = `<div>`
+               record.forEach(items => {
+                console.log(items);
+                htmlcontent += `<h1 class="text-xl font -bold mt-4">${items.items.snippet.channelTitle}</h1>
+                     <p>${items.items.snippet.description}</p>
+                     <img class="w-[300px]"src="${items.items.snippet.thumbnails.default.url}"/>`
+               
+                
+
+               });
+               htmlcontent += `</div>`
+               image.innerHTML = htmlcontent
+            }catch(error){
+                console.log(error);
+                
+            }
+    
+            
+}
+
+    </script>
+</body>
+
+</html>
