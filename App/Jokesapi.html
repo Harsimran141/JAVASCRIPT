@@ -40,14 +40,15 @@
     submit.addEventListener("click",()=>{
         let pagevalue = page.value
         let limitvalue = limit.value
-        let incvalue = inc.input
-        let queryvalue = query.input
+        let incvalue = inc.value
+
+        let queryvalue = query.value
         let displayvalue = display.value
         async function products() {
             try{
-                const response = await fetch("https://api.freeapi.app/api/v1/public/randomproducts?")
+                const response = await fetch(`https://api.freeapi.app/api/v1/public/randomjokes?page=${pagevalue}&limit=${limitvalue}&inc=${incvalue}&query=${queryvalue}`)
                 const data =  await response.json();
-                console.log(data.data.data);
+                console.log(data);
                 console.log("hello");
                 
                 
@@ -55,8 +56,9 @@
                 let htmlContent = " ";
         record.forEach(items => {
             htmlContent +=`
-            <div class="bg-white w-[400px] mx-auto mt-4  rounded-lg shadow-md p-4">${items.data.brands}
-               <p class="bg-blue-400 mx-auto mt-4">${items.data.descreption}</p>
+            <div class="bg-white w-[400px] mx-auto mt-4  rounded-lg shadow-md p-4">${items.id}
+               <p class="bg-blue-400 mx-auto mt-4">${items.content}</p>
+               <p class="bg-red-400 mx-auto mt-4">${items.categories}</p>
                 </div>`
         });
         display.innerHTML = htmlContent;

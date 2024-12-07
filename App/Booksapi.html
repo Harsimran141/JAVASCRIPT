@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-300">
+    <div class="text-2xl w-[600px] mx-auto p-10 rounded-md bg-slate-200 mt-10">
+        <div>
+            <label for="" class="border-2 mt-10 text-2xl ml-10 text-red-500">Page</label>
+            <input id="page" class="border border-black" type="text">
+        </div>
+        <div>
+            <label for="" class="border-2 mt-10 text-2xl ml-10 text-green-800">Limit</label>
+            <input id="limit" class="mt-4 border border-black" type="text">
+        </div>
+        <div>
+            <label class="border-2 mt-10 text-2xl ml-12 text-blue-600" for="">INC</label>
+            <input id="inc" class="mt-4 border border-black" type="text">
+           
+        </div>
+        <div>
+            <label class="border-2  mt-10 text-2xl ml-6 text-pink-500" for="">Query</label>
+            <input id="query" class="mt-4 border border-black" type="text">
+        </div>
+        <div class="mt-10 bg-red-40 text-center">
+            <button id="submit" class="bg-red-400 p-2 rounded-md shadow-md text-white font-bold">Submit</button>
+        </div>
+        <div id="display" class="text-center mt-4 bg-slate-800 text-lime-100">
+
+        </div>
+    </div>
+</body>
+<script>
+    const page = document.getElementById("page");
+    const limit = document.getElementById("limit");
+    const inc = document.getElementById("inc");
+    const query = document.getElementById("query");
+    const display = document.getElementById("display");
+    const submit = document.getElementById("submit");
+submit.addEventListener("click",()=>{
+    let pagevalue  =  page.value
+    let limitvalue = limit.value
+    let incvalue   =   inc.value
+    let queryvalue = query.value
+    async function books() {
+        try{
+            const ebook = await fetch(`https://api.freeapi.app/api/v1/public/books?page=${pagevalue}&limit=${limitvalue}&inc=${incvalue}&query=${queryvalue}`)
+            const data = await ebook.json();
+            console.log(data);
+            let newbooks = data.data.data
+            let htmlContent =" "
+            newbooks.forEach(booklist => {
+              htmlContent +=`<div class="bg-white p-2 m-4 rounded-md">
+                <h1 class="mt-4 text-slate-800">${booklist.volumeInfo.title}</h1>
+                <h2 class="text-slate-600">${booklist.volumeInfo.subtitle || ""}</h2>
+              <h2 class="Text-2xl text-blue-600 font-bold">${booklist.volumeInfo.authors || ""}</h2>
+              <div class=" w-full justify-center flex "><img  src="${booklist.volumeInfo.imageLinks.thumbnail}"/></div>
+              ${Array.from({length:booklist.volumeInfo.averagecounting},()=>"✨")}
+              
+              </div>`
+             
+            });
+            display.innerHTML = htmlContent
+        }catch(error){
+        }
+
+    }
+    books()
+})
+</script>
+</html>
