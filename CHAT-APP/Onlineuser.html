@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-blue-500 text-white p-4">
+            <h1 class="text-2xl font-bold">Chats-App</h1>
+        </div>
+        <div class="divide-y divide-gray-200">
+            <div id="display">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById("display");
+        async function chat() {
+            let record = localStorage.getItem("data")
+            let usertoken = JSON.parse(record)
+            console.log("my record", record);
+            console.log("my token", usertoken);
+            let option = {
+                headers: {
+                    accept: 'application/json',
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${usertoken.accessToken}`,
+                },
+            }
+            let url = `https://api.freeapi.app/api/v1/chat-app/chats/users`
+            try {
+                let response = await fetch(url, option)
+                let result = await response.json()
+                localStorage.setItem("online_users", JSON.stringify(result))
+                console.log(result);
+                let html = ""
+                result.data.forEach(element => {
+                    html += `<span data-id="${element._id}" 
+                class="userlist flex items-center px-4 py-3 hover:bg-gray-100 transition duration-150 ease-in-out">
+                <img class="h-10 w-10 rounded-full object-cover" src="https://via.placeholder.com/40" alt="User avatar">
+                <div class="ml-3 flex-1">
+                    <div class="flex items-bottom justify-between">
+                        <p class=" text-sm font-medium text-gray-900">${element.username}</p>
+                        
+                        <p class="text-xs text-gray-500">12:45 PM</p>
+                    </div>
+                    <p class="text-sm text-gray-500 truncate">Hey, how are you doing?</p>
+                </div>
+            </span>`
+                }
+                );
+                display.innerHTML = html
+                const userlist = document.querySelectorAll(".userlist");
+                userlist.forEach((item) => {
+                item.addEventListener('click', () => {
+                let record = item.getAttribute("data-id")
+                localStorage.setItem("userid",record)
+                window.location = "Chat.html"
+                 console.log(record);
+                 
+                console.log("hello");
+
+                    })
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        chat()
+    </script>
+</body>
+
+</html>

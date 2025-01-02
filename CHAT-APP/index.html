@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+    <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-blue-500 text-white p-4">
+            <h1 class="text-2xl font-bold">Chats</h1>
+        </div>
+        <div class="divide-y divide-gray-200">
+            <a href="chat-view.html"
+                class="flex items-center px-4 py-3 hover:bg-gray-100 transition duration-150 ease-in-out">
+                <img class="h-10 w-10 rounded-full object-cover" src="https://via.placeholder.com/40" alt="User avatar">
+                <div class="ml-3 flex-1">
+                    <div class="flex items-bottom justify-between">
+                        <p class="text-sm font-medium text-gray-900">Harsimran</p>
+                        <p class="text-xs text-gray-500">12:45 PM</p>
+                    </div>
+                    <p class="text-sm text-gray-500 truncate">Hey, how are you doing?</p>
+                </div>
+            </a>
+            <a href="chat-view.html"
+                class="flex items-center px-4 py-3 hover:bg-gray-100 transition duration-150 ease-in-out">
+                <img class="h-10 w-10 rounded-full object-cover" src="https://via.placeholder.com/40" alt="User avatar">
+                <div class="ml-3 flex-1">
+                    <div class="flex items-bottom justify-between">
+                        <p class="text-sm font-medium text-gray-900">Jaskaran</p>
+                        <p class="text-xs text-gray-500">Yesterday</p>
+                    </div>
+                    <p class="text-sm text-gray-500 truncate">Can we meet tomorrow?</p>
+                </div>
+            </a>
+            <a href="group-chat.html"
+                class="flex items-center px-4 py-3 hover:bg-gray-100 transition duration-150 ease-in-out">
+                <div
+                    class="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold">
+                    G
+                </div>
+                <div class="ml-3 flex-1">
+                    <div class="flex items-bottom justify-between">
+                        <p class="text-sm font-medium text-gray-900">Project Team</p>
+                        <p class="text-xs text-gray-500">2 days ago</p>
+                    </div>
+                    <p class="text-sm text-gray-500 truncate">Meeting at 3 PM today</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script>
+        async function init() {
+            try {
+                let option = {
+                    method: "GET",
+                    headers: {
+                        accept: 'application/json',
+                        'content-type': 'application/json'
+                    }
+                }
+                let record = localStorage.getItem("data")
+                console.log(record);
+                
+                let apiResponse = await fetch("https://api.freeapi.app/api/v1/chat-app/chats/users",option)
+                let data = await apiResponse.json();
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+
+            }
+        }
+        init();
+    </script>
+</body>
+
+</html>
