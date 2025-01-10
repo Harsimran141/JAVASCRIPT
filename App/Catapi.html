@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+        <div class="w-[450px] m-auto rounded-md  bg-red-100">
+        <h1 class="text-2xl text-center mt-10 font-bold bg-slate-300 text-red-800">Api Data</h1>
+        <div class="flex">
+            <button id="btn" class="bg-green-700 font-bold text-white p-2 rounded-md ml-32 mt-8 shadow-8">Click
+                Me</button>
+            <button id="speech" class="bg-green-700 font-bold text-white p-2 rounded-md ml-4  mt-8 shadow-8">Click
+                voice</button>
+             </div>
+        <div id="text">
+      </div>
+    </div>
+    <script>
+        const button = document.getElementById("btn");
+        const display = document.getElementById("text");
+        button.addEventListener('click',() =>{
+         apicall()
+        })
+        async function apicall() {
+          try{
+            let response  = await fetch("https://api.freeapi.app/api/v1/public/cats/cat/random");
+            let catpic = await response.json();
+            console.log(catpic);
+            let htmlcontent = `
+                <div class="w-[450px]  m-auto bg-red-100">
+           <div>
+            <img class="w-[250px] m-auto mt-4 rounded-md" src="${catpic.data.image}"/>
+          <div class="text-2xl border-t-4 border-indigo-500 border-b-4 border-indigo-500 bg-fuchsia-300 mt-4 text-orange-950"><h1> Description</h1></div>  <p class="p-4 text-green-950 text-xl" id="cat-info">${catpic.data.description}</p>
+    </div>
+      </div>`
+
+                display.innerHTML = htmlcontent
+          }catch(e){
+           console.log(e);
+
+          }      
+        }
+    </script>
+</body>
+</html>

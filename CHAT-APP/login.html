@@ -32,8 +32,7 @@
             </div>
             <div class="text-red-800">
                 <p id="error">
-
-                </p>
+               </p>
             </div>
         </form>
         <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
@@ -50,47 +49,46 @@
         const password = document.getElementById("password");
         const submit = document.getElementById("submit");
         const display = document.getElementById("error");
-        submit.addEventListener('click',LoGin)
-        function LoGin(){
+        submit.addEventListener('click', LoGin)
+        function LoGin() {
             let emailValue = email.value;
             let passwordValue = password.value;
-            console.log(emailValue);
-            console.log(passwordValue);
-            Loginapi({emailValue,passwordValue});
+
+            Loginapi({ emailValue, passwordValue });
         }
         async function Loginapi(data) {
             console.log(data);
-        
-                let option = {
-                    method:"POST",
-                    headers:{
-                        accept: 'application/json',
+
+            let option = {
+                method: "POST",
+                headers: {
+                    accept: 'application/json',
                     'content-type': 'application/json'
-                    },
-                    body:JSON.stringify({
-                        "username":data.emailValue,
-                        "password":data.passwordValue,
-                    })
-                   }
+                },
+                body: JSON.stringify({
+                    "username": data.emailValue,
+                    "password": data.passwordValue,
+                })
+            }
             try {
-                let apiResponse = await fetch("https://api.freeapi.app/api/v1/users/login",option);
+                let apiResponse = await fetch("https://api.freeapi.app/api/v1/users/login", option);
                 let data = await apiResponse.json();
                 console.log(data);
-                if(!apiResponse.ok){
+                if (!apiResponse.ok) {
                     display.innerHTML = `<div>
                     ${data.message}
                     </div>`
-                 }else{
-                    localStorage.setItem("data",JSON.stringify(data.data))
+                } else {
+                    localStorage.setItem("data", JSON.stringify(data.data))
                     window.location = "Onlineuser.html";
-                 }
-                
-                } catch (error) {
+                }
+
+            } catch (error) {
                 console.log("Error in fetching data");
                 console.log(error.message);
             }
         }
-            
+
     </script>
 </body>
 

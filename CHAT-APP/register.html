@@ -91,10 +91,10 @@
                  
             try {
                 const response = await fetch(url, options);
-                const jsonresponse = await response.json();
-                console.log(jsonresponse);
+                const dataresponse = await response.json();
+                console.log(dataresponse);
                 alert("User Register sucessfully")
-                 window.location="login.html"
+                //  window.location="login.html"
             } catch (error) {
                 console.error(error);
             }

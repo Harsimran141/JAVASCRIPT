@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div  class="w-[500px] h-[350px] bg-gray-400 m-auto mt-10 rounded-md">
+        <form>
+            <h1 class="text-2xl text-center font-bold text-4xl text-white ">Login</h1>
+          <label for="" class="text-2xl p-4" >Email or username</label>
+          <div>
+          <input type="text" id="username" name="username" required class="ml-4 mt-4 w-[320px] rounded-md">
+          </div>
+          <div class="mt-6">
+            <label for=""class="text-2xl">Password</label>
+          </div>
+          <div class="ml-4">
+            <input  type="password" id="password" required class="w-[320px] rounded-md">
+          </div>
+           <div class="p-4">
+            <button type="button" id="submit" class="mt-10 rounded-md text-white text-2xl py-2 bg-blue-500 w-full">Sign in</button>
+           </div>
+           <div>
+            <p id="error" class="text-red-600 text-2xl"></p>
+           </div>
+           </form>
+    </div>
+    <script>
+        const username = document.getElementById("username");
+        const Password = document.getElementById("password");
+        const submit = document.getElementById("submit");
+        const display = document.getElementById("error");
+        submit.addEventListener('click',Login)
+        function Login(){
+            let usernameValue = username.value;
+            let PasswordValue = Password.value;
+            loginapi({usernameValue,PasswordValue});
+        }
+        async function loginapi(data) {   
+            console.log("hello",data);
+            let option = {
+                method:"POST",
+                headers:{
+                    accept:'application/json',
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify({
+                    "password": data.PasswordValue,
+                    "username": data.usernameValue,
+                     })
+                    }
+                   try{
+                    let response = await fetch(`https://api.freeapi.app/api/v1/users/login`,option)
+                    let adddata = await  response.json()
+                    if(!response.ok){
+                        display.innerHTML = `<div>
+                        ${adddata.message}</div>`
+                        }else{
+                        localStorage.setItem('record',JSON.stringify(adddata))
+                        }
+                    } catch (error) {
+                    console.log(error);
+                    }
+            }
+        </script>
+</body>
+</html>
