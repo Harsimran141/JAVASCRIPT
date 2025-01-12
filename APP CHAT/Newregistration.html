@@ -62,9 +62,10 @@
             let passwordValue = password.value;
             let roleValue = role.value;
             Registerapi({ nameValue, emailValue, passwordValue, roleValue });
-        }
+            }
+
         async function Registerapi(data) {
-            console.log(data);
+            console.log("Harsimran",data);
             try {
                 let option = {
                     method: "POST",
@@ -78,15 +79,16 @@
                         "role": data.roleValue,
                         "username": data.nameValue
                     })
+                    
                 }
+                console.log("singh",JSON);
                 const response = await fetch('https://api.freeapi.app/api/v1/users/register', option);
                 const newdata = await response.json(); 
                 alert("User Register Sucessfully"); 
             }
                 catch (error) {
                     console.log(error);
-                    
-                }
+                    }
                 }
     </script>
 </body>
