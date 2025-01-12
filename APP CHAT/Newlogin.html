@@ -7,15 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div  class="w-[500px] h-[350px] bg-gray-400 m-auto mt-10 rounded-md">
+    <div  class="w-[500px] h-[350px] bg-gray-200 m-auto mt-10 rounded-md">
         <form>
-            <h1 class="text-2xl text-center font-bold text-4xl text-white ">Login</h1>
-          <label for="" class="text-2xl p-4" >Email or username</label>
+            <h1 class="text-2xl text-center font-bold text-4xl">Login</h1>
+          <label for="" class="text-2xl p-4" >Email or Username</label>
           <div>
           <input type="text" id="username" name="username" required class="ml-4 mt-4 w-[320px] rounded-md">
           </div>
           <div class="mt-6">
-            <label for=""class="text-2xl">Password</label>
+            <label for=""class="text-2xl p-4">Password</label>
           </div>
           <div class="ml-4">
             <input  type="password" id="password" required class="w-[320px] rounded-md">
@@ -24,7 +24,7 @@
             <button type="button" id="submit" class="mt-10 rounded-md text-white text-2xl py-2 bg-blue-500 w-full">Sign in</button>
            </div>
            <div>
-            <p id="error" class="text-red-600 text-2xl"></p>
+            <p id="error" class="text-red-400 text-2xl"></p>
            </div>
            </form>
     </div>
@@ -60,6 +60,7 @@
                         ${adddata.message}</div>`
                         }else{
                         localStorage.setItem('record',JSON.stringify(adddata))
+                        window.location = "Onlinechat.html"
                         }
                     } catch (error) {
                     console.log(error);

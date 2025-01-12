@@ -24,8 +24,8 @@
         async function chat() {
             let record = localStorage.getItem("data")
             let usertoken = JSON.parse(record)
-            console.log("my record", record);
-            console.log("my token", usertoken);
+            // console.log("my record", record);
+            // console.log("my token", usertoken);
             let option = {
                 headers: {
                     accept: 'application/json',
@@ -63,7 +63,6 @@
                 localStorage.setItem("userid",record)
                 window.location = "Chat.html"
                  console.log(record);
-                 
                 console.log("hello");
 
                     })
