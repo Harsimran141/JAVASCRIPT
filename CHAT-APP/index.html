@@ -64,8 +64,8 @@
                 }
                 let record = localStorage.getItem("data")
                 console.log(record);
-                
-                let apiResponse = await fetch("https://api.freeapi.app/api/v1/chat-app/chats/users",option)
+
+                let apiResponse = await fetch("https://api.freeapi.app/api/v1/chat-app/chats/users", option)
                 let data = await apiResponse.json();
                 console.log(data);
             } catch (error) {
