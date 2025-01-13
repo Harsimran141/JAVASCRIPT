@@ -15,17 +15,14 @@
         </div>
         <div class="divide-y divide-gray-200">
             <div id="display">
-
-            </div>
         </div>
-    </div>
-    <script>
+        </div>
+        </div>
+        <script>
         const display = document.getElementById("display");
         async function chat() {
             let record = localStorage.getItem("data")
             let usertoken = JSON.parse(record)
-            // console.log("my record", record);
-            // console.log("my token", usertoken);
             let option = {
                 headers: {
                     accept: 'application/json',
