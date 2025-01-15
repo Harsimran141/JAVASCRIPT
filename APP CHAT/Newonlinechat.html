@@ -33,9 +33,6 @@
                 console.log(detail);
                 let accessToken = detail.data.accessToken;
                 console.log(accessToken);
-
-
-
                 let option = {
                     method: "GET",
                     headers: {
@@ -49,14 +46,28 @@
                 console.log(newdata);
                 let show = ""
                 newdata.data.forEach(element => {
-                    
+                
                     show += `
-            <h1 class="p-2 hover:bg-gray-100 mt-1 rounded-md" data-id="${element._id}">${element.username}</h1>`
-
+            <h1 class="p-2 hover:bg-gray-100 mt-1 rounded-md listitem" data-id="${element._id}">${element.username}</h1>`
+              
                 });
+                
+            
                 display.innerHTML = show
                 console.log(show);
+                let list = document.querySelectorAll(".listitem");
+                console.log(list);
+                list.forEach(data =>{
+                    console.log("hello",data);
+                    data.addEventListener("click", function(){
 
+                        let rec = data.getAttribute("data-id");
+                        localStorage.setItem("userid",rec)
+                        window.location =""
+                        
+             })
+                    
+                })
             } catch (error) {
                 console.log(error);
 
