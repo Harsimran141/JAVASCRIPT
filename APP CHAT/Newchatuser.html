@@ -9,15 +9,19 @@
 </head>
 
 <body>
-
-    <div class="w-[550px] h-[315px] bg-gray-200 m-auto mt-4 rounded-md   ">
+    <div class="w-[550px] h-[315px] bg-gray-200 m-auto mt-4 rounded-md">
         <h1 class="text-center text-2xl text-blue-600 font-bold">User Chat</h1>
         <div class="mt-40">
+            <div id="display">
+            </div>
+
             <input id="input" class="ml-4 mt-20 ml-20 w-[400px] h-[35px] rounded-md" type="text">
             <button id="btn" class="bg-blue-500 p-2 rounded-md ml-2 text-white font-medium">Send</button>
+
         </div>
     </div>
     <script>
+        const display = document.getElementById("display");
         const usertoken = localStorage.getItem("record")
         console.log("token", usertoken);
         const token = JSON.parse(usertoken)
@@ -27,7 +31,7 @@
         const send = document.getElementById("btn");
         send.addEventListener("click", () => {
             let newsent = input.value;
-            sendMessage()
+            sendMessage(newsent)
             console.log("sent", newsent);
 
         })
@@ -35,7 +39,7 @@
             let option = {
                 method: "POST",
                 headers: {
-                    acept: 'application/json',
+                    accept: 'application/json',
                     'content-type': 'application/json',
                     Authorization: `Bearer ${token.data.accessToken}`,
                 }
@@ -47,7 +51,7 @@
             try {
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/chats/c/${store}`, option)
                 let chat = await response.json()
-                console.log("har", chat);
+                console.log("waris", chat);
                 localStorage.setItem("chatid", chat.data._id)
                 getMessage()
             } catch (e) {
@@ -63,7 +67,7 @@
                 method: "GET",
                 headers: {
 
-                    acept: 'application/json',
+                    accept: 'application/json',
                     'content-type': 'application/json',
                     Authorization: `Bearer ${token.data.accessToken}`,
                 }
@@ -71,32 +75,45 @@
             try {
                 let newlocal = localStorage.getItem("chatid")
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${newlocal}`, option)
+                console.log("singh", response);
+                let messages = await response.json();
+                console.log(messages);
+                let showmessage = ""
+                messages.data.forEach(listmessage => {
+                    showmessage += `
+                  <h1 class="p-2 text-gray-800 bg-blue-200 mt-1 rounded-md listitem">${listmessage.content}</h1>`
+                    console.log(listmessage.content);
+
+                });
+                display.innerHTML = showmessage;
+                console.log("hello", showmessage);
+
             } catch (error) {
                 console.log(error);
             }
 
         }
-        async function sendMessage() {
+        async function sendMessage(message) {
             let option = {
                 method: "POST",
                 headers: {
 
-                    acept: 'application/json',
+                    accept: 'application/json',
                     'content-type': 'application/json',
                     Authorization: `Bearer ${token.data.accessToken}`,
                 },
-                body:JSON.stringify({content:"hello"})
-                    
-                
+                body: JSON.stringify({ content: message })
             }
-            try{
+            try {
                 let sendstore = localStorage.getItem("chatid")
-                let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${sendstore}`,option)
-            }catch(e){
+                let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${sendstore}`, option)
+                getMessage()
+            } catch (e) {
                 console.log(e);
-                
+
             }
         }
     </script>
 </body>
+
 </html>
