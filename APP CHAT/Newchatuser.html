@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <div class="w-[550px] h-[315px] bg-gray-200 m-auto mt-4 rounded-md">
+    <div class="w-[550px] h-[450px] bg-gray-200 m-auto mt-4 rounded-md">
         <h1 class="text-center text-2xl text-blue-600 font-bold">User Chat</h1>
         <div class="mt-40">
             <div id="display">
             </div>
 
-            <input id="input" class="ml-4 mt-20 ml-20 w-[400px] h-[35px] rounded-md" type="text">
+            <input id="input" class="ml-4 mt-20 ml-20 w-[400px] h-full rounded-md" type="text">
             <button id="btn" class="bg-blue-500 p-2 rounded-md ml-2 text-white font-medium">Send</button>
 
         </div>
@@ -26,7 +26,6 @@
         console.log("token", usertoken);
         const token = JSON.parse(usertoken)
         console.log(token);
-
         const input = document.getElementById("input");
         const send = document.getElementById("btn");
         send.addEventListener("click", () => {
@@ -58,12 +57,10 @@
                 console.log(e);
 
             }
-
-        }
+            }
         createchat()
         async function getMessage() {
-
-            let option = {
+        let option = {
                 method: "GET",
                 headers: {
 
@@ -80,8 +77,11 @@
                 console.log(messages);
                 let showmessage = ""
                 messages.data.forEach(listmessage => {
-                    showmessage += `
-                  <h1 class="p-2 text-gray-800 bg-blue-200 mt-1 rounded-md listitem">${listmessage.content}</h1>`
+                    showmessage +=`
+                    <div class="flex gap-[20px] p-2">
+                  <h1  class=" w-full p-2 text-gray-800 bg-blue-600 mt-2  rounded-md">${listmessage.content}</h1>
+                 <button  class="bg-red-500 btn rounded-md px-2 text-white">DEL</button> 
+                 </div>`
                     console.log(listmessage.content);
 
                 });
@@ -102,7 +102,7 @@
                     'content-type': 'application/json',
                     Authorization: `Bearer ${token.data.accessToken}`,
                 },
-                body: JSON.stringify({ content: message })
+                body: JSON.stringify({content: message})
             }
             try {
                 let sendstore = localStorage.getItem("chatid")
@@ -113,7 +113,16 @@
 
             }
         }
-    </script>
+        async function delMessage() {
+            let option = {
+
+            }
+            
+        }
+        const del = document.getElementsByClassName("btn");
+          console.log("jit",del);
+          
+</script>
 </body>
 
 </html>
