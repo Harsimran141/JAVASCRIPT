@@ -27,8 +27,8 @@
                 <label for="Role"class="block text-md font-medium width-full">Role</label>
                 <select name="" id="role" class="w-full text-center">
                     <option value="">Select a Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">User</option>
                 </select>
             </div>
                 <div>
@@ -65,7 +65,7 @@
                     },
                     body: JSON.stringify({
                      "email": data.emailValue,
-                     "name": data.nameValue,
+                     "username": data.nameValue,
                      "password": data.passwordValue,
                      "role": data.roleValue   
                     })
