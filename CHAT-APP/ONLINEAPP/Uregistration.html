@@ -1,82 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <style>
+        .notie-container {
+            box-shadow: none;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body >
+
+<body>
     <div class="">
         <div class="w-[550px] h-[400px] bg-gray-300 m-auto mt-4 rounded-md shadow-md">
-             <h1 class="text-center text-2xl text-blue-600">User Registration For Chat App</h1>
-        <form class="m-auto p-6 space-y-6">
-            <div>
-            <label  for="">User Name</label>
-            <input id="username" type="text" required class="w-[300px]">
-            </div>
-            <div>
-                <label  for="name">Email </label>
-                <input id="email" type="text" name="email" required class="w-[300px] ml-10">
-            </div>
-            <div>
-                <label for="password" class="">Password</label>
-                <input id="password" type="password"required class="w-[300px] ml-4">
-                <div class="flex gap-4 p-8">
-            </div>
-                <label for="Role"class="block text-md font-medium width-full">Role</label>
-                <select name="" id="role" class="w-full text-center">
-                    <option value="">Select a Role</option>
-                    <option value="ADMIN">ADMIN</option>
-                    <option value="USER">User</option>
-                </select>
-            </div>
+            <h1 class="text-center text-2xl text-blue-600">User Registration For Chat App</h1>
+            <form class="m-auto p-6 space-y-6">
                 <div>
-            <button id="button" type="button" class="bg-blue-200 w-full">Register</button>
+                    <label for="">User Name</label>
+                    <input id="username" type="text" required class="w-[300px]">
                 </div>
-        </form>
-        <div class="text-center font-medium border-t border-gray-200 bg-gray-200 rounded-b-md py-4">
-            <p>Already have an account?
-                <a href="Newlogin.html" class="font-medium text-blue-600 hover:text-blue-500">Login Here</a>
-            </p>
-        </div>
+                <div>
+                    <label for="name">Email </label>
+                    <input id="email" type="text" name="email" required class="w-[300px] ml-10">
+                </div>
+                <div>
+                    <label for="password" class="">Password</label>
+                    <input id="password" type="password" required class="w-[300px] ml-4">
+                    <div class="flex gap-4 p-8">
+                    </div>
+                    <label for="Role" class="block text-md font-medium width-full">Role</label>
+                    <select name="" id="role" class="w-full text-center">
+                        <option value="">Select a Role</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="USER">User</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="button" type="button" class="bg-blue-200 w-full">Register</button>
+                </div>
+            </form>
+            <div class="text-center font-medium border-t border-gray-200 bg-gray-200 rounded-b-md py-4">
+                <p>Already have an account?
+                    <a href="Newlogin.html" class="font-medium text-blue-600 hover:text-blue-500">Login Here</a>
+                </p>
+            </div>
         </div>
     </div>
+    <script src="https://unpkg.com/notie"></script>
     <script>
+        notie.alert({ text: 'Login' })
         const name = document.getElementById("username");
         const email = document.getElementById("email");
         const password = document.getElementById("password");
         const role = document.getElementById("role");
         const btn = document.getElementById("button");
-        btn.addEventListener("click",()=>{
+        btn.addEventListener("click", () => {
             let nameValue = name.value;
             let emailValue = email.value;
             let passwordValue = password.value;
             let roleValue = role.value;
-         submit({nameValue, emailValue, passwordValue, roleValue});
-         })
+            submit({ nameValue, emailValue, passwordValue, roleValue });
+        })
         async function submit(data) {
-            try{
+            try {
                 let option = {
-                    method : "POST",
+                    method: "POST",
                     headers: {
-                    accept: 'application/json',
-                    'content-type':'application/json'
+                        accept: 'application/json',
+                        'content-type': 'application/json'
                     },
                     body: JSON.stringify({
-                     "email": data.emailValue,
-                     "username": data.nameValue,
-                     "password": data.passwordValue,
-                     "role": data.roleValue   
+                        "email": data.emailValue,
+                        "username": data.nameValue,
+                        "password": data.passwordValue,
+                        "role": data.roleValue
                     })
-                    }
-                    let response = await fetch('https://api.freeapi.app/api/v1/users/register',option);
-                    let newdata = await response.json();
-                    console.log("hello",newdata);
-                    }catch(e){
-                    console.log(e);
-                    }
                 }
-            </script>
+                let response = await fetch('https://api.freeapi.app/api/v1/users/register', option);
+                let newdata = await response.json();
+                if(!response.ok){
+                notie.alert({ type: 'error', text: newdata.message })
+                }else{
+                    notie.alert({ type: 'success', text: newdata.message })
+                }
+                console.log("hello", newdata);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    </script>
 </body>
+
 </html>
