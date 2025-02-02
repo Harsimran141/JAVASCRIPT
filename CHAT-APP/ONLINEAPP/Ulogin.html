@@ -20,19 +20,22 @@
     <div class="text-center mt-10 text-2xl text-white font-medium">
         <button id="button" type="submit"  class="bg-blue-800 p-2 rounded-md">Sign in</button>
     </div>
+    <div>
+      <p id="error"></p>
+    </div>
     </div>
     <script>
         const username = document.getElementById("username");
         const password = document.getElementById("password");
         const signin = document.getElementById("button");
+        const display = document.getElementById("error");
          signin.addEventListener('click',Login)
-            function login(){
+            function Login(){
             let usernameValue = username.value;
             let passwordValue = password.value;
            loginapi({usernameValue,passwordValue});
-           
-             }
-             async function ulogin(data) {
+           }
+             async function uLogin(data) {
                 console.log("pal",data);
                 
                 
