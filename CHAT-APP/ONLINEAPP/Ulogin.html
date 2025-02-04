@@ -1,45 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    <div class="m-auto mt-4 rounded-md shadow-md w-[450px] bg-blue-100 h-[220PX]">
-      <div class="text-center font-medium bg-gray-200 text-2xl rounded-md text-blue-800">Login Page</div>
-      <div class="mt-4">
-        <label for="" class="p-4">Username</label>
-        <input id="username" name="username" required class="w-[300px]" type="text">
-      </div> 
-      <div class="mt-4">
-        <label class="p-4" for="">Password</label>
-        <input id="password" type="password" required class="w-[305px]" type="text">  
+  <div class="m-auto mt-4 rounded-md shadow-md w-[450px] bg-blue-100 h-[220PX]">
+    <div class="text-center font-medium bg-gray-200 text-2xl rounded-md text-blue-800">Login Page</div>
+    <div class="mt-4">
+      <label for="" class="p-4">Username</label>
+      <input id="username" name="username" required class="w-[300px]" type="text">
+    </div>
+    <div class="mt-4">
+      <label class="p-4" for="">Password</label>
+      <input id="password" type="password" required class="w-[305px]" type="text">
     </div>
     <div class="text-center mt-10 text-2xl text-white font-medium">
-        <button id="button" type="submit"  class="bg-blue-800 p-2 rounded-md">Sign in</button>
+      <button id="button" type="submit" class="bg-blue-800 p-2 rounded-md">Sign in</button>
     </div>
     <div>
       <p id="error"></p>
     </div>
-    </div>
-    <script>
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const signin = document.getElementById("button");
-        const display = document.getElementById("error");
-         signin.addEventListener('click',Login)
-            function Login(){
-            let usernameValue = username.value;
-            let passwordValue = password.value;
-           loginapi({usernameValue,passwordValue});
-           }
-             async function uLogin(data) {
-                console.log("pal",data);
-                
-                
-             }
-    </script>
+  </div>
+  <script>
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const signin = document.getElementById("button");
+    const display = document.getElementById("error");
+    signin.addEventListener('click', Login)
+    function Login() {
+      let usernameValue = username.value;
+      let passwordValue = password.value;
+      uloginapi({ usernameValue, passwordValue });
+    }
+    async function uloginapi(data) {
+      console.log("Waris singh", data);
+      let option = {
+        method: "POST",
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          "username": data.usernameValue,
+          "password": data.passwordValue
+        })
+      }
+      try {
+        let response = await fetch(`https://api.freeapi.app/api/v1/users/login`, option)
+        let newdata = await response.json()
+        console.log("jarman", newdata);
+        display.innerHTML = `<div>
+                    ${newdata.message}</div>`
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  </script>
 </body>
+
 </html>

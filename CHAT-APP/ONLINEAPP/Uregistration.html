@@ -36,7 +36,7 @@
                     <select name="" id="role" class="w-full text-center">
                         <option value="">Select a Role</option>
                         <option value="ADMIN">ADMIN</option>
-                        <option value="USER">User</option>
+                        <option value="USER">USER</option>
                     </select>
                 </div>
                 <div>
@@ -52,7 +52,7 @@
     </div>
     <script src="https://unpkg.com/notie"></script>
     <script>
-        notie.alert({ text: 'Login' })
+        notie.alert({ text: 'Login'})
         const name = document.getElementById("username");
         const email = document.getElementById("email");
         const password = document.getElementById("password");
@@ -70,8 +70,8 @@
                 let option = {
                     method: "POST",
                     headers: {
-                        accept: 'application/json',
-                        'content-type': 'application/json'
+                        accept:'application/json',
+                        'content-type':'application/json'
                     },
                     body: JSON.stringify({
                         "email": data.emailValue,
@@ -89,7 +89,7 @@
                 }
                 console.log("hello", newdata);
                 window.location = "Ulogin.html"
-            } catch (e) {
+            }catch(e) {
                 console.log(e);
             }
         }
