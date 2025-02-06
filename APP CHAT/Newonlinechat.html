@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
     <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-4">
         <div>
@@ -18,7 +19,7 @@
         <div>
             <p id="display" class="font-medium p-4"></p>
             <div>
-           </div>
+            </div>
         </div>
     </div>
     <script>
@@ -26,11 +27,11 @@
         async function online() {
             try {
                 let record = localStorage.getItem("record")
-                console.log("hi", record);
+                // console.log("hi", record);
                 let detail = JSON.parse(record)
-                console.log(detail);
+                // console.log(detail);
                 let accessToken = detail.data.accessToken;
-                console.log(accessToken);
+                // console.log(accessToken);
                 let option = {
                     method: "GET",
                     headers: {
@@ -41,7 +42,7 @@
                 }
                 let response = await fetch("https://api.freeapi.app/api/v1/chat-app/chats/users", option)
                 let newdata = await response.json();
-                console.log(newdata);
+                // console.log(newdata);
                 let show = ""
                 newdata.data.forEach(element => {
                     show += `
@@ -60,11 +61,11 @@
                         window.location = "Newchatuser.html"
 
                     })
-                    })
+                })
             } catch (error) {
                 console.log(error);
-           }
-           }
+            }
+        }
         online();
     </script>
 </body>

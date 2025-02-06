@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="max-w-md bg-blue-500 mx-auto h-[400px]">
+        <h1 class="text-center text-white text-2xl">Online-User</h1>
+    </div>
+    <div>
+        <p id="display"></p>
+    </div>
+    <script>
+        const display = document.getElementById("display");
+        async function online() {
+            try{
+            let recdata = (localStorage.getItem('record'))
+            let objdata = JSON.parse('record')
+            console.log("pal",recdata);
+            let accessToken = objdata.data.accessToken;
+            console.log("chatapp",accessToken);
+            let option ={
+                method:"GET",
+                headers:{
+                    accept: 'application/json',
+                        'content-type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                },
+            }
+            let response = await fetch("https://api.freeapi.app/api/v1/chat-app/chats/users", option)
+            let reciveddata = await response.json();
+            let show = ""
+            reciveddata.data.forEach(element => {
+                console.log("elements",element);
+                show +=`<h1 class="p-2 hover:bg-gray-100 mt-1 rounded-md listitem" data-id="${element._id}">${element.username}</h1>`
+                
+            });
+            }catch(e){
+
+            }
+            
+        }
+    </script>
+</body>
+</html>

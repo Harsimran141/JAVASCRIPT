@@ -56,6 +56,9 @@
         console.log("jarman", newdata);
         display.innerHTML = `<div>
                     ${newdata.message}</div>`
+                    localStorage.setItem('record',JSON.stringify(newdata))
+                    console.log("waris singh",localStorage);
+                    window.location = "Uonline.html"
       } catch (error) {
         console.log(error);
       }
