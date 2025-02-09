@@ -39,6 +39,14 @@
                 
             });
             display.innerHTML = show
+            let list = document.querySelectorAll(".listitem");
+            list.forEach(newlist=>{
+            newlist.addEventListener('click',function(){
+            let ulist = newlist.getAttribute("data-id")
+            localStorage.setItem("newrecordset",ulist)
+            winndow.location = "Uchat.html"
+                })
+            })
             console.log("parse",show);
             
             }catch(e){

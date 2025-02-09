@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-[550px] h-[450px] bg-gray-200 m-auto mt-4 rounded-md">
+        <h1 class="text-center text-2xl text-blue-600 font-bold">User Chat</h1>
+        <div class="mt-4">
+            <div id="display">
+            </div>
+
+            <input id="input" class="ml-4 mt-20 ml-20 w-[400px] h-full rounded-md" type="text">
+            <button id="btn" class="bg-blue-500 p-2 rounded-md ml-2 text-white font-medium">Send</button>
+          </div>
+    </div>
+    <script>
+        const display = document.getElementById("display");
+        const input =  document.getElementById("input");
+        const send = document.getElementById("btn");
+  send.addEventListener('click',function(){
+    
+  })
+    </script>
+</body>
+</html>
