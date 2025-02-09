@@ -17,12 +17,12 @@
         const display = document.getElementById("display");
         async function online() {
             try{
-            let recdata = (localStorage.getItem('record'))
+            let storagedata = (localStorage.getItem('record'))
             let objdata = JSON.parse('record')
-            console.log("pal",recdata);
+            console.log("pal",storagedata);
             let accessToken = objdata.data.accessToken;
             console.log("chatapp",accessToken);
-            let option ={
+            let option = {
                 method:"GET",
                 headers:{
                     accept: 'application/json',

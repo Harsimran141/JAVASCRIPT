@@ -53,12 +53,11 @@
       try {
         let response = await fetch(`https://api.freeapi.app/api/v1/users/login`, option)
         let newdata = await response.json()
-        console.log("jarman", newdata);
         display.innerHTML = `<div>
                     ${newdata.message}</div>`
-                    localStorage.setItem('record',JSON.stringify(newdata))
-                    console.log("waris singh",localStorage);
-                    window.location = "Uonline.html"
+        localStorage.setItem('record', JSON.stringify(newdata))
+        console.log("waris singh", localStorage);
+        window.location = "Uonline.html"
       } catch (error) {
         console.log(error);
       }
