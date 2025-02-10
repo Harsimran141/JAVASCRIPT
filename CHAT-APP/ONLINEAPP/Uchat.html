@@ -21,11 +21,24 @@
     </div>
     <script>
         const display = document.getElementById("display");
+        let ustore = localStorage.getItem("newrecordset");
+        let token = JSON.parse(ustore);
         const input =  document.getElementById("input");
         const send = document.getElementById("btn");
-  send.addEventListener('click',function(){
+  send.addEventListener('click',() => {
+    let messent = input.value;
+    })
+    async function createchat() {
+        let option = {
+                method: "POST",
+                headers: {
+                    accept: 'application/json',
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${token.data.accessToken}`,
+                }
+                }  
+    }
     
-  })
     </script>
 </body>
 </html>
