@@ -9,16 +9,17 @@
 <body>
     <div class="max-w-md bg-blue-500 mx-auto h-[400px]">
         <h1 class="text-center text-white text-2xl">Online-User</h1>
-    </div>
-    <div>
         <p id="display"></p>
     </div>
+    
     <script>
         const display = document.getElementById("display");
+        console.log(display);
+        
         async function online() {
             try{
             let storagedata = (localStorage.getItem('record'))
-            let objdata = JSON.parse('record')
+            let objdata = JSON.parse(storagedata)
             console.log("pal",storagedata);
             let accessToken = objdata.data.accessToken;
             console.log("chatapp",accessToken);
@@ -35,25 +36,33 @@
             let show = ""
             reciveddata.data.forEach(element => {
                 console.log("elements",element);
-                show +=`<h1 class="p-2 hover:bg-gray-600 mt-1 rounded-md listitem" data-id="${element._id}">${element.username}</h1>`
+                show +=`<h1 class="p-2 hover:bg-gray-600 mt-1 rounded-md listitem" id="${element._id}">${element.username}</h1>`
                 
             });
             display.innerHTML = show
             let list = document.querySelectorAll(".listitem");
             list.forEach(newlist=>{
             newlist.addEventListener('click',function(){
-            let ulist = newlist.getAttribute("data-id")
-            localStorage.setItem("newrecordset",ulist)
-            winndow.location = "Uchat.html"
+            let ulist = newlist.getAttribute("id")
+            console.log("error",newlist);
+            
+            console.log("bug",ulist);
+            
+            localStorage.setItem("reciverid",ulist)
+            window.location = "Uchat.html"
                 })
             })
             console.log("parse",show);
             
             }catch(e){
-
+                console.log(e);
+                
             }
             
         }
+        online()
+        console.log("hello");
+        
     </script>
 </body>
 </html>
