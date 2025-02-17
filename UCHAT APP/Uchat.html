@@ -8,6 +8,7 @@
 </head>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
     <div class="w-[550px] h-[450px] bg-gray-200 m-auto mt-4 rounded-md">
         <h1 class="text-center text-2xl text-blue-600 font-bold">User Chat</h1>
@@ -77,8 +78,8 @@
         sendMessage()
         async function getmessages() {
             let getchatid = localStorage.getItem("chatid");
-            console.log("getid",getchatid);
-            try{
+            console.log("getid", getchatid);
+            try {
                 let option = {
                     method: "GET",
                     headers: {
@@ -87,34 +88,32 @@
                         Authorization: `Bearer ${token.data.accessToken}`,
                     },
                 }
-            let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${getchatid}`,option)
-            let getmessages = await response.json()
-             console.log("show",getmessages);
-              let show = ""
-              getmessages.data.forEach(element => {
-                console.log("umess",element);
-               show +=`
+                let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${getchatid}`, option)
+                let getmessages = await response.json()
+                console.log("show", getmessages);
+                let show = ""
+                getmessages.data.forEach(element => {
+                    console.log("umess", element);
+                    show += `
                <div class="text-center">
                <h1 class="text-green-800">${element.content}</h1>
                <p class="text-red-900">${element.sender.username}</p>
                </div`
-               
-             });
-             console.log("iii",show);
-             
-             display.innerHTML = show
-             
-            }catch(errs){
+
+                });
+                console.log("iii", show);
+
+                display.innerHTML = show
+
+            } catch (errs) {
                 console.log(errs);
-                
+
             }
 
         }
         // setInterval(()=>{
         //    getmessages() 
         // },2000)
-        
-
     </script>
 </body>
 
