@@ -52,9 +52,9 @@
         }
         createchat()
         async function sendMessage(message) {
-            console.log("mess", message);
+            // console.log("mess", message);
             let chatid = localStorage.getItem("chatid");
-            console.log("newid", chatid);
+            // console.log("newid", chatid);
             try {
                 let option = {
                     method: "POST",
@@ -70,7 +70,7 @@
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${chatid}`, option)
                 let uresponse = await response.json()
                 getmessages()
-                console.log("res", uresponse);
+                // console.log("res", uresponse);
             } catch (err) {
                 console.log(err);
             }
@@ -78,7 +78,7 @@
         sendMessage()
         async function getmessages() {
             let getchatid = localStorage.getItem("chatid");
-            console.log("getid", getchatid);
+            // console.log("getid", getchatid);
             try {
                 let option = {
                     method: "GET",
@@ -90,25 +90,27 @@
                 }
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${getchatid}`, option)
                 let getmessages = await response.json()
-                console.log("show", getmessages);
+                console.log("ALLMESSAGES", getmessages);
+                // let nmess = getmessages.data.sender._id;
                 let show = ""
                 getmessages.data.forEach(element => {
-                    console.log("umess", element);
+                    // console.log("umess", element);
                     show += `
                <div class="text-center">
                <h1 class="text-green-800">${element.content}</h1>
                <p class="text-red-900">${element.sender.username}</p>
+            
                </div`
                });
-                console.log("iii", show);
+                // console.log("iii", show);
                 display.innerHTML = show
                 } catch (errs) {
                 console.log(errs);
             }
             }
-        setInterval(()=>{
-           getmessages() 
-        },2000)
+        // setInterval(()=>{
+        //    getmessages() 
+        // },2000)
     </script>
 </body>
 

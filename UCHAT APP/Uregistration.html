@@ -84,9 +84,10 @@
                 let newdata = await response.json();
                 if(!response.ok){
                 notie.alert({ type: 'error', text: newdata.message })
-                }else{
-                    notie.alert({ type: 'success', text: newdata.message })
+                return;
                 }
+                notie.alert({ type: 'success', text: newdata.message })
+                
                 console.log("hello", newdata);
                 window.location = "Ulogin.html"
             }catch(e) {

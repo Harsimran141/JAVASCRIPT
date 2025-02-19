@@ -53,6 +53,11 @@
       try {
         let response = await fetch(`https://api.freeapi.app/api/v1/users/login`, option)
         let newdata = await response.json()
+        if(!response.ok){
+          display.innerHTML  = `<div class="text-red-600 font-medium mt-2">Error: ${newdata.message
+            || "You are not registered!"}</div>`;
+            return;
+        }
         display.innerHTML = `<div>
                     ${newdata.message}</div>`
         localStorage.setItem('record', JSON.stringify(newdata))
