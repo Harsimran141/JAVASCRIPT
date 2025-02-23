@@ -91,23 +91,34 @@
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${getchatid}`, option)
                 let getmessages = await response.json()
                 console.log("ALLMESSAGES", getmessages);
-                // let nmess = getmessages.data.sender._id;
                 let show = ""
                 getmessages.data.forEach(element => {
-                    // console.log("umess", element);
+                 
                     show += `
-               <div class="text-center">
-               <h1 class="text-green-800">${element.content}</h1>
-               <p class="text-red-900">${element.sender.username}</p>
-            
-               </div`
-               });
-                // console.log("iii", show);
-                display.innerHTML = show
-                } catch (errs) {
+               <div class="">
+               <h1 class="text-green-800 message" id="${element._id}">${element.content}</h1>
+               <p class="text-green-800"></p>
+            </div>`
+              });
+               display.innerHTML = show
+                let mess = document.querySelectorAll(".message");
+                console.log("ii",mess);
+                
+                mess.forEach(listmessage => {
+                    listmessage.addEventListener("click",()=>{
+                        console.log("11",listmessage);
+                        
+                        let nmess = listmessage.getAttribute("id")
+                        console.log(nmess);
+                        
+                    //    localStorage.setItem("reciverid", nmess)
+                    })
+                    
+                });
+            } catch (errs) {
                 console.log(errs);
             }
-            }
+        }
         // setInterval(()=>{
         //    getmessages() 
         // },2000)

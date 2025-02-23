@@ -22,9 +22,9 @@
             try {
                 let storagedata = (localStorage.getItem('record'))
                 let objdata = JSON.parse(storagedata)
-                console.log("pal", storagedata);
+
                 let accessToken = objdata.data.accessToken;
-                console.log("chatapp", accessToken);
+
                 let option = {
                     method: "GET",
                     headers: {
@@ -37,31 +37,22 @@
                 let reciveddata = await response.json();
                 let show = ""
                 reciveddata.data.forEach(element => {
-                    console.log("elements", element);
+                    console.log("username", element);
                     show +=
-                        `<h1 class="p-2 hover:bg-gray-600 mt-1 rounded-md listitem" id="${element._id}">${element.username}</h1>`
-
+                        `<h1 class="p-2 text-xl text-700 hover:bg-white mt-1 rounded-md listitem" id="${element._id}">${element.username}</h1>`
                 });
                 display.innerHTML = show
                 let list = document.querySelectorAll(".listitem");
                 list.forEach(newlist => {
                     newlist.addEventListener('click', function () {
                         let ulist = newlist.getAttribute("id")
-                        console.log("error", newlist);
-
-                        console.log("bug", ulist);
-
                         localStorage.setItem("reciverid", ulist)
                         window.location = "Uchat.html"
                     })
                 })
-                console.log("parse", show);
-
             } catch (e) {
                 console.log(e);
-
             }
-
         }
         online()
         console.log("hello");
