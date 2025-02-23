@@ -97,16 +97,19 @@
                     show += `
                <div class="">
                <h1 class="text-green-800 message" id="${element._id}">${element.content}</h1>
-               <p class="text-green-800"></p>
+               <p class="text-green-800 "></p>
             </div>`
               });
                display.innerHTML = show
                 let mess = document.querySelectorAll(".message");
+                
                 console.log("ii",mess);
                 
                 mess.forEach(listmessage => {
                     listmessage.addEventListener("click",()=>{
+                        
                         console.log("11",listmessage);
+                        console.log(mess);
                         
                         let nmess = listmessage.getAttribute("id")
                         console.log(nmess);

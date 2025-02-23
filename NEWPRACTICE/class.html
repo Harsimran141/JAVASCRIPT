@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div>
+    <div class="w-[200px] h-[150px] color bg-blue-800 m-auto mt-10 rounded-md shadow-md">
+     <div class="change"></div>
+     <div class="bg-pink-800"></div>
+    </div>
+     <button id="btn" class="w-full mt-10 bg-red-700 p-2 text-white text-2xl font-bold">Click Me</button>
+     </div>
+     <script>
+        const button = document.getElementById("btn");
+        const change = document.querySelector(".color");
+        button.addEventListener("click",()=>{
+            change.classList.remove(".color");
+            console.log(button);
+            
+        })
+     </script>
+</body>
+</html>
