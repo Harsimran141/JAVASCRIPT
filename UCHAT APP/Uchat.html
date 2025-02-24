@@ -93,28 +93,35 @@
                 console.log("ALLMESSAGES", getmessages);
                 let show = ""
                 getmessages.data.forEach(element => {
+                 console.log("1",element.sender._id);
+                 let senderid = element.sender._id;
+                 let record = localStorage.getItem("record")
+              
+                  record = JSON.parse(record)
+                  console.log("a",record.data.user._id);
+                  let currentuserid = record.data.user._id;
+                  if(currentuserid == senderid){
+                       show += `
+                       <div class="w-full h-10 bg-green-300 flex justify-end">
+                           <h1 class="w-[20%] h-10 bg-red-400 message" id="${element._id}">${element.content}</h1>
+                       </div>`
+                  }else{
+                     show += `
+                     <div class="w-full h-10 bg-green-300 flex justify-start">
+                         <h1 class="w-[20%] h-10 bg-blue-400 message" id="${element._id}">${element.content}</h1>
+                     </div>`
+                  }
                  
-                    show += `
-               <div class="">
-               <h1 class="text-green-800 message" id="${element._id}">${element.content}</h1>
-               <p class="text-green-800 "></p>
-            </div>`
               });
+              
                display.innerHTML = show
                 let mess = document.querySelectorAll(".message");
-                
-                console.log("ii",mess);
-                
                 mess.forEach(listmessage => {
-                    listmessage.addEventListener("click",()=>{
+                listmessage.addEventListener("click",()=>{
+                let nmess = listmessage.getAttribute("id")
+                
                         
-                        console.log("11",listmessage);
-                        console.log(mess);
-                        
-                        let nmess = listmessage.getAttribute("id")
-                        console.log(nmess);
-                        
-                    //    localStorage.setItem("reciverid", nmess)
+                      //localStorage.setItem("reciverid", nmess)
                     })
                     
                 });
