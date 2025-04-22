@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <body>
+    <div class="w-[350px] h-[300px] bg-blue-500 m-auto mt-10 rounded-md">
+      <div class="-4">
+        <input id="num1" class="w-[200px] bg-gray-200 mt-4 ml-4 rounded-md"  type="number" />
+      </div>
+      <input id="num2" class="w-[200px] mt-4 bg-gray-200  mt-4 ml-4 rounded-md" type="number" />
+      <div class="mt-4 ml-4">
+        <button
+          class="w-[40px] h-[40px] bg-blue-900 rounded-md text-white font-bold text-2xl text-center"
+          id="add"
+        >
+          +
+        </button>
+        <button
+          class="w-[40px] h-[40px] bg-blue-900 rounded-md text-white font-bold text-2xl text-center"
+          id="subtract"
+        >
+          -
+        </button>
+        <button
+          class="w-[40px] h-[40px] bg-blue-900 rounded-md text-white font-bold text-2xl text-center"
+          id="into"
+        >
+          *
+        </button>
+        <button
+          class="w-[40px] h-[40px] bg-blue-900 rounded-md text-white font-bold text-2xl text-center"
+          id="divide"
+        >
+          /
+        </button>
+        
+        <label for="" class="flex mt-4 text-white">Result</label>
+        <h2 id="ans" class="text-red-900 bg-white  w-[50px] h-[30px] rounded-md flex"></h2>
+    </>  
+    </div>
+    </div>
+    <script>
+      const num1 = document.getElementById("num1");
+      const num2 = document.getElementById("num2");
+      const add = document.getElementById("add");
+      const subtract = document.getElementById("subtract");
+      const into = document.getElementById("into");
+      const divide = document.getElementById("divide");
+      const ans = document.getElementById("ans");
+      function fun_add() {
+        let result = parseInt(num1.value) + parseInt(num2.value);
+        ans.innerText = result;
+        console.log(ans);
+      }
+      subtract.onclick = fun_add;
+      function fun_subtract(){
+        let result = parseInt(num1.value) - parseInt(num2.value);
+        ans.innerText = result;
+
+      }
+  
+    into.addEventListener("click",()=>{
+      let result = parseInt(num1.value) * parseInt(num2.value);
+      ans.innerText = result;
+    })
+    divide.addEventListener("click",()=>{
+      let result = parseInt(num1.value) / parseInt(num2.value);
+      ans.innerText = result;
+    })
+    </script>
+  </body>
+</html>

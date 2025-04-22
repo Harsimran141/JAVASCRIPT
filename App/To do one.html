@@ -31,7 +31,7 @@
             const input = document.getElementById('input');
             const btn = document.getElementById('btn');
             const userlist = document.getElementById('Ulist');
-            Updatebtn.addEventListener('click',update)
+            Updatebtn.addEventListener('click', update)
             btn.addEventListener('click', function () {
                 let record = input.value.trim();
                 let object = {
@@ -44,6 +44,7 @@
                 console.log(record);
                 Display();
             })
+
             function Display() {
                 userlist.innerHTML = "";
                 data.map((items) => {
@@ -66,7 +67,7 @@
                         Updatebtn.classList.remove('hidden');
                         btn.classList.add('hidden');
                         input.value = ndata.name
-                        Updatebtn.setAttribute('dataid',ndata.id)
+                        Updatebtn.setAttribute('dataid', ndata.id)
 
                     })
 
@@ -85,30 +86,25 @@
 
                 })
             }
-        
 
-        function update(){
-            let id = Updatebtn.getAttribute('dataid')
-             data = data.map((item)=>{
-                 console.log(item.id);
-                 console.log(id);
-                 if(item.id === id){
-                     return{
-                         ...item,
-                         name:input.value,
-                         
-                     }
-                 }
-                 return item
+
+            function update() {
+                let id = Updatebtn.getAttribute('dataid')
+                data = data.map((item) => {
+                    console.log(item.id);
+                    console.log(id);
+                    if (item.id === id) {
+                        return {
+                            ...item,
+                            name: input.value,
+
+                        }
+                    }
+                    return item
                 })
                 console.log(data);
-             Display();
-        }
-
-
-
-
-
+                Display();
+            }
         </script>
 
 

@@ -21,6 +21,10 @@
         async function online() {
             try {
                 let storagedata = (localStorage.getItem('record'))
+                console.log("11",storagedata);
+                if(storagedata ==null){
+                    window.location = "Ulogin.html"
+                }
                 let objdata = JSON.parse(storagedata)
 
                 let accessToken = objdata.data.accessToken;

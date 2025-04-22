@@ -18,16 +18,34 @@
             <input id="input" class="ml-4 mt-20 ml-20 w-[400px] h-full rounded-md" type="text">
             <button id="btn" class="bg-blue-500 p-2 rounded-md ml-2 text-white font-medium">Send</button>
         </div>
+        <button id ="logout" class="bg-red-800 shadow-md text-center mt-10 ml-[230px] rounded-md text-white w-[60px]">Log Out</button>
     </div>
     <script>
+        const logout = document.getElementById("logout");
         const display = document.getElementById("display");
         let ustore = localStorage.getItem("record");
+        console.log("141",ustore);
+        if(ustore==null){
+            window.location = "Ulogin.html"
+        }
         let token = JSON.parse(ustore);
         const input = document.getElementById("input");
         const send = document.getElementById("btn");
+        logout.addEventListener("click",()=>{
+            // let revoveuser = localStorage.getItem("record");
+            // let clearspace = JSON.parse(revoveuser)
+            console.log("click");
+            
+            if(token){
+                localStorage.removeItem("record")
+               window.location= "Uregistration.html"
+            }
+            
+        })
         send.addEventListener('click', () => {
             let messent = input.value;
             sendMessage(messent)
+            input.value = "";
         })
         async function createchat() {
             let option = {
@@ -76,6 +94,33 @@
             }
         }
         sendMessage()
+        async function deletemessage(messageId) {
+            let ChatId = localStorage.getItem("chatid");
+           
+            console.log("11", ChatId);
+            console.log("12", messageId);
+
+
+            try {
+                let option = {
+                    method: "DELETE",
+                    headers: {
+                        accept: 'application/json',
+                        'content-type': 'application/json',
+                        Authorization: `Bearer ${token.data.accessToken}`,
+                    }
+
+
+                }
+                let response = await fetch(
+                `https://api.freeapi.app/api/v1/chat-app/messages/${ChatId}/${messageId}`,option)
+                let delmessage = await response.json();
+                getmessages()
+                console.log("DEL",delmessage);
+            } catch (delerror) {
+                console.log(delerror);
+            }
+        }
         async function getmessages() {
             let getchatid = localStorage.getItem("chatid");
             // console.log("getid", getchatid);
@@ -90,47 +135,49 @@
                 }
                 let response = await fetch(`https://api.freeapi.app/api/v1/chat-app/messages/${getchatid}`, option)
                 let getmessages = await response.json()
-                console.log("ALLMESSAGES", getmessages);
+                // console.log("ALLMESSAGES", getmessages);
                 let show = ""
                 getmessages.data.forEach(element => {
-                 console.log("1",element.sender._id);
-                 let senderid = element.sender._id;
-                 let record = localStorage.getItem("record")
-              
-                  record = JSON.parse(record)
-                  console.log("a",record.data.user._id);
-                  let currentuserid = record.data.user._id;
-                  if(currentuserid == senderid){
-                       show += `
+                    //  console.log("1",element.sender._id);
+                    let senderid = element.sender._id;
+                    let record = localStorage.getItem("record")
+                    record = JSON.parse(record)
+                    //   console.log("a",record.data.user._id);
+                    let currentuserid = record.data.user._id;
+                    if (currentuserid == senderid) {
+                        show += `
                        <div class="w-full h-10 bg-green-300 flex justify-end">
-                           <h1 class="w-[20%] h-10 bg-red-400 message" id="${element._id}">${element.content}</h1>
+                           <h1 class="w-[20%] h-10 text-white bg-red-800 message"id="${element._id}">${element.content}</h1>
+                           <button class="bg-blue-800" onclick="deletemessage('${element._id}')">DEL</button>
                        </div>`
-                  }else{
-                     show += `
+                    } else {
+                        show += `
                      <div class="w-full h-10 bg-green-300 flex justify-start">
                          <h1 class="w-[20%] h-10 bg-blue-400 message" id="${element._id}">${element.content}</h1>
-                     </div>`
-                  }
-                 
-              });
-              
-               display.innerHTML = show
+                         </div>`
+                    }
+
+                });
+
+                display.innerHTML = show
                 let mess = document.querySelectorAll(".message");
                 mess.forEach(listmessage => {
-                listmessage.addEventListener("click",()=>{
-                let nmess = listmessage.getAttribute("id")
-                
-                        
-                      //localStorage.setItem("reciverid", nmess)
+                    listmessage.addEventListener("click", () => {
+                        let nmess = listmessage.getAttribute("id")
+
+
+                        //localStorage.setItem("reciverid", nmess)
                     })
-                    
+
                 });
             } catch (errs) {
                 console.log(errs);
             }
+
         }
+
         // setInterval(()=>{
-        //    getmessages() 
+
         // },2000)
     </script>
 </body>
